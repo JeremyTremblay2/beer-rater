@@ -1,7 +1,6 @@
-package fr.iut.beerrater.data
+package fr.iut.beerrater.domain.model
 
 import androidx.room.Embedded
-import androidx.room.Entity
 import androidx.room.Relation
 
 data class BeerWithReviews(@Embedded val beer: Beer,
