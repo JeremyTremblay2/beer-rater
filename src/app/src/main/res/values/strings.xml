@@ -9,4 +9,10 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="beer_image_description">An image of the beer</string>
+    <string name="bar_image_subtitle_text">An image of a bar</string>
+    <string name="empty_bar_title_text">Are you a little thirsty?</string>
+    <string name="empty_bar_subtitle_text">Our bar has not yet been stocked, come back later with Internet enabled to discover our ranges!</string>
+    <string name="unkown_first_brewed_date">Unknow Date</string>
+    <string name="eclamation_points">\??</string>
 </resources>

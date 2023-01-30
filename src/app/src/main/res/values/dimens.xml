@@ -1,3 +1,21 @@
 <resources>
+    <dimen name="activity_margin">16dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="icon_title_space">32dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="space_between_elements_empty_group">16dp</dimen>
+    <dimen name="side_margin_elements_empty_group">16dp</dimen>
+    <dimen name="keg_padding_beer_item">8dp</dimen>
+    <dimen name="comment_item_cardview_margin">8dp</dimen>
+    <dimen name="comment_size">16sp</dimen>
+    <dimen name="comment_title_size">18sp</dimen>
+    <dimen name="beer_name_list_size">20sp</dimen>
+    <dimen name="cardview_elevation">4dp</dimen>
+    <dimen name="cardview_corner_radius_comment">25dp</dimen>
+    <dimen name="cardview_corner_radius_beer">5dp</dimen>
+    <dimen name="cardview_padding_comment">16dp</dimen>
+    <dimen name="cardview_padding_beer">10dp</dimen>
+    <dimen name="cardview_margin_beer">6dp</dimen>
+    <dimen name="cardview_margin_comment">6dp</dimen>
 </resources>
