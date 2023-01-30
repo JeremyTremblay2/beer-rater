@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 @Entity
-data class Beer(@PrimaryKey(autoGenerate = true) val id: Int = 0,
+data class Beer(@PrimaryKey(autoGenerate = true) val beerId: Int = 0,
                 @SerializedName("name") val name: String = "Beer",
                 @SerializedName("tagline") val tagline: String = "",
                 @SerializedName("first_brewed") @ColumnInfo(name = "first_brewed_date") val firstBrewedDate : Date? = null,

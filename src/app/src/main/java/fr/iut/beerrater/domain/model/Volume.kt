@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "Beer_Volume")
-data class Volume(@PrimaryKey(autoGenerate = true) val id: Int = 0,
+data class Volume(@PrimaryKey(autoGenerate = true) val volumeId: Int = 0,
                   @SerializedName("value") @ColumnInfo(name = "volume") val value: Int = 0,
                   @SerializedName("unit") val unit: VolumeUnit
 )
@@ -16,5 +16,9 @@ data class Volume(@PrimaryKey(autoGenerate = true) val id: Int = 0,
         LITER,
         @SerializedName("gallons")
         GALLON
+    }
+
+    override fun toString(): String {
+        return String.format("%s%c", value, unit.toString()[0])
     }
 }

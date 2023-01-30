@@ -22,7 +22,7 @@ interface BeerDao {
     fun getAllBeers(): LiveData<List<Beer>>
 
     @Transaction
-    @Query("SELECT * FROM Beer WHERE id = :beerId")
+    @Query("SELECT * FROM Beer WHERE beerId = :beerId")
     suspend fun getBeerWithReviewsById(beerId: Int): BeerWithReviews?
 
     @Insert(onConflict = REPLACE)
@@ -34,7 +34,7 @@ interface BeerDao {
     @Update(onConflict = REPLACE)
     suspend fun updateReview(review: Review)
 
-    @Delete()
+    @Query("DELETE FROM Review WHERE reviewId = :reviewId")
     suspend fun deleteReviewById(reviewId: Int)
 
     @Query("DELETE FROM Review")
