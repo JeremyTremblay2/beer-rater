@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="@dimen/cardview_corner_radius_comment"
     card_view:cardElevation="@dimen/cardview_elevation"
-    android:layout_margin="@dimen/cardview_margin_comment">
+    android:layout_margin="@dimen/cardview_margin_comment"
+    card_view:cardBackgroundColor="?attr/colorSurface">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,7 +33,6 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/archivo"
             android:justificationMode="inter_word"
-            android:textColor="@color/material_dynamic_primary0"
             android:textSize="@dimen/comment_size"
             android:maxLines="8"
             card_view:layout_constraintEnd_toEndOf="parent"

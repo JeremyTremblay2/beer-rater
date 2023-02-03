@@ -11,7 +11,7 @@
         android:id="@+id/toolbar_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorSecondary"
         app:elevation="@dimen/toolbar_elevation"
         android:theme="@style/Theme.BeerRater.AppBarOverlay"
         app:popupTheme="@style/Theme.BeerRater.PopupOverlay"

@@ -10,7 +10,7 @@
     card_view:cardCornerRadius="@dimen/cardview_corner_radius_beer"
     card_view:cardElevation="@dimen/cardview_elevation"
     android:layout_margin="@dimen/cardview_margin_beer"
-    android:background="?attr/colorBackgroundFloating">
+    android:background="?attr/colorSurface">
 
     <LinearLayout
         android:id="@+id/layout_beer_cardview"

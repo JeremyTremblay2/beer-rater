@@ -14,7 +14,8 @@ import fr.iut.beerrater.domain.model.Beer
 
 @Database(
     entities = [Beer::class, Review:: class, Volume::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(VolumeUnitToIntConverter::class, DateToLongConverter::class)
 abstract class BeerDatabase : RoomDatabase() {
