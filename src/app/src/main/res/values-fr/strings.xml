@@ -1,3 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Beer Rater</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="next">Suivant</string>
+    <string name="previous">Précédent</string>
+    <string name="beer_image_description">Une image de la bière</string>
+    <string name="bar_image_subtitle_text">Une image d\'un bar</string>
+    <string name="empty_bar_title_text">Avez-vous soif ?</string>
+    <string name="empty_bar_subtitle_text">Notre bar n\'a pas encore été approvisionné. Revenez plus tard avec une connexion réseau active pour découvrir nos stocks!</string>
+    <string name="unkown_first_brewed_date">Date inconnue</string>
+    <string name="first_brewed_date_des">Date de première brassée</string>
+    <string name="abv_des">Alcool par volume</string>
+    <string name="ph_des">PH</string>
+    <string name="volume_des">Volume brassé</string>
+    <string name="contributor_des">Ajouté par</string>
+    <string name="slider_ph_value_description">Une glissière indiquant le niveau de PH de la bière</string>
+    <string name="reviews_section">Commentaires</string>
+    <string name="button_write_review_description">Un bouton permettant d\'ajouter un avis à cette bière</string>
+    <string name="add_review_text_button">Ajouter un avis</string>
 </resources>
