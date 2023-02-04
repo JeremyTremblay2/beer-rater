@@ -28,18 +28,30 @@
     <style name="Theme.BeerRater.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.BeerRater.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="ratingBar" parent="Theme.AppCompat">
-        <item name="ratingBarStyle">?android:attr/ratingBarStyleSmall</item>
+    <style name="default_rating_bar_style" parent="Theme.AppCompat">
         <item name="colorControlNormal">@color/ratingStarEmpty</item>
         <item name="colorControlActivated">@color/ratingStar</item>
         <item name="controlBackground">@color/ratingStarBackground</item>
+        <item name="android:rating">5</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
     </style>
 
-    <style name="standardTextFielsStyle">
+    <style name="default_text_view_style">
+        <item name="android:textColor">?attr/colorOnBackground</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="fontFamily">sans-serif-medium</item>
         <item name="maxLines">3</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <style name="default_text_review_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fontFamily">@font/archivo</item>
+        <item name="android:justificationMode" tools:targetApi="o">inter_word</item>
+        <item name="android:textSize">@dimen/comment_size</item>
+        <item name="android:maxLines">8</item>
     </style>
 </resources>

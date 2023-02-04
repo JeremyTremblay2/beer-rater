@@ -18,7 +18,15 @@
     <string name="contributor_des">Integrated by</string>
     <string name="slider_ph_value_description">A slider indicating the PH level of the beer</string>
     <string name="reviews_section">Reviews</string>
-    <string name="button_write_review_description">A button allowing you to add a review for this beer.</string>
+    <string name="button_write_review_description">Allows you to add a review for this beer.</string>
     <string name="add_review_text_button">Add a review</string>
     <string name="button_delete_review_description">A element that allows you to delete this review</string>
+    <string name="title_text">Title</string>
+    <string name="add_a_review_text_title">Add a review</string>
+    <string name="rating_bar_review_description">Indicates the level of satisfaction for this beer</string>
+    <string name="description_text">Description</string>
+    <string name="add_edit_review_cancel_button_description">Cancel the modifications</string>
+    <string name="add_edit_review_save_button_description">Save</string>
+    <string name="save_text">Save</string>
+    <string name="cancel_text">Cancel</string>
 </resources>

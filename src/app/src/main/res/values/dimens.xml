@@ -25,4 +25,7 @@
     <dimen name="beer_detail_sections_spacing">24dp</dimen>
     <dimen name="beer_item_cardview_margin">8dp</dimen>
     <dimen name="margin_delete_icon_review">16dp</dimen>
+    <dimen name="add_edit_review_title_margin">32dp</dimen>
+    <dimen name="add_edit_review_top_margin">8dp</dimen>
+    <dimen name="add_edit_review_standard_margin">16dp</dimen>
 </resources>

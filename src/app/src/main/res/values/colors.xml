@@ -3,16 +3,16 @@
 <resources>
     <color name="secondary">#FF333333</color>
     <color name="secondaryVariant">#FF666666</color>
-    <color name="primary">#90caf9</color>
-    <color name="primaryVariant">#5d99c6</color>
+    <color name="primary">#FF1976d2</color>
+    <color name="primaryVariant">#FF004ba0</color>
     <color name="background">#FFefefef</color>
     <color name="surface">#FFEEEEEE</color>
     <color name="error">#FFB00020</color>
-    <color name="onPrimary">#000000</color>
+    <color name="onPrimary">#FFFFFF</color>
     <color name="onSecondary">#FFFFFF</color>
     <color name="onBackground">#FF000000</color>
     <color name="onSurface">#FF000000</color>
-    <color name="onError">#FF000000</color>
+    <color name="onError">#FFFFFF</color>
 
     <color name="lessAlcoholColor">#F3F8F8</color>
     <color name="mostAlcoholColor">#D3F5F8</color>
