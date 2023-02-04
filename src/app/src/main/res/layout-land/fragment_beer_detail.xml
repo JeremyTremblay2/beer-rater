@@ -17,7 +17,7 @@
             android:layout_marginStart="@dimen/beer_detail_side_margin"
             android:layout_marginTop="@dimen/beer_detail_side_margin"
             android:layout_marginEnd="@dimen/beer_detail_side_margin"
-            android:fontFamily="sans-serif-medium"
+            style="@style/default_text_view_style"
             android:maxLines="2"
             android:textSize="@dimen/beer_name_detail_size"
             android:textStyle="bold"
@@ -43,7 +43,7 @@
 
         <TextView
             android:id="@+id/beer_tagline_detail"
-            style="@style/standardTextFielsStyle"
+            style="@style/default_text_view_style"
             android:layout_width="0dp"
             android:layout_marginStart="@dimen/beer_detail_side_margin"
             android:layout_marginTop="@dimen/beer_small_margin_detail"
@@ -73,7 +73,7 @@
 
             <TextView
                 android:id="@+id/beer_description_detail"
-                style="@style/standardTextFielsStyle"
+                style="@style/default_text_view_style"
                 android:justificationMode="inter_word"
                 android:maxLines="10"
                 android:padding="@dimen/beer_detail_side_margin"
@@ -96,7 +96,7 @@
 
         <TextView
             android:id="@+id/beer_ph_detail_des"
-            style="@style/standardTextFielsStyle"
+            style="@style/default_text_view_style"
             android:text="@string/ph_des"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/beer_ph_slider_value"
@@ -106,7 +106,7 @@
 
         <TextView
             android:id="@+id/beer_abv_detail_des"
-            style="@style/standardTextFielsStyle"
+            style="@style/default_text_view_style"
             android:text="@string/abv_des"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/layout_abv_values"
@@ -116,7 +116,7 @@
 
         <TextView
             android:id="@+id/beer_first_brewed_date_detail_des"
-            style="@style/standardTextFielsStyle"
+            style="@style/default_text_view_style"
             android:layout_marginTop="@dimen/beer_detail_side_margin"
             android:text="@string/first_brewed_date_des"
             android:textAlignment="center"
@@ -126,7 +126,7 @@
 
         <TextView
             android:id="@+id/beer_volume_detail_des"
-            style="@style/standardTextFielsStyle"
+            style="@style/default_text_view_style"
             android:layout_marginTop="@dimen/beer_detail_side_margin"
             android:text="@string/volume_des"
             android:textAlignment="center"
@@ -136,7 +136,7 @@
 
         <TextView
             android:id="@+id/beer_contributor_detail_des"
-            style="@style/standardTextFielsStyle"
+            style="@style/default_text_view_style"
             android:layout_marginTop="@dimen/beer_detail_side_margin"
             android:text="@string/contributor_des"
             android:textAlignment="center"
@@ -173,7 +173,7 @@
 
             <TextView
                 android:id="@+id/beer_abv_textview_value"
-                style="@style/standardTextFielsStyle"
+                style="@style/default_text_view_style"
                 android:layout_marginStart="@dimen/beer_detail_side_margin"
                 android:textAlignment="textEnd"
                 app:layout_constraintBottom_toBottomOf="@+id/beer_abv_seekbar_value"
@@ -187,6 +187,7 @@
                 android:max="60"
                 android:padding="0dp"
                 android:progress="30"
+                android:thumbTint="?attr/colorOnBackground"
                 android:progressDrawable="@drawable/abv_color_gradient"
                 android:saveEnabled="false"
                 android:thumb="@drawable/ic_wine"
@@ -199,8 +200,8 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/beer_small_margin_detail"
             android:drawablePadding="@dimen/beer_keg_drawable_padding_detail"
-            android:fontFamily="sans-serif-medium"
             android:maxLines="1"
+            style="@style/default_text_view_style"
             android:textAlignment="textEnd"
             android:textAppearance="?android:textAppearanceMedium"
             app:drawableEndCompat="@drawable/ic_keg"
@@ -217,8 +218,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:drawablePadding="@dimen/beer_keg_drawable_padding_detail"
-            android:fontFamily="sans-serif-medium"
             android:maxLines="1"
+            style="@style/default_text_view_style"
             android:textAlignment="textEnd"
             android:textAppearance="?android:textAppearanceMedium"
             app:drawableEndCompat="@drawable/ic_person"
@@ -232,7 +233,7 @@
 
         <TextView
             android:id="@+id/beer_volume_detail_value"
-            style="@style/standardTextFielsStyle"
+            style="@style/default_text_view_style"
             android:layout_width="0dp"
             android:textAlignment="textEnd"
             android:textAppearance="?android:textAppearanceMedium"
@@ -254,7 +255,7 @@
 
         <TextView
             android:id="@+id/reviews_section_name"
-            style="@style/standardTextFielsStyle"
+            style="@style/default_text_view_style"
             android:layout_marginTop="@dimen/beer_detail_sections_spacing"
             android:text="@string/reviews_section"
             android:textSize="20sp"
@@ -277,15 +278,19 @@
 
         <Button
             android:id="@+id/button_write_review"
-            style="@style/standardTextFielsStyle"
+            style="@style/default_text_view_style"
             android:layout_marginTop="@dimen/beer_detail_side_margin"
             android:contentDescription="@string/button_write_review_description"
             android:drawableEnd="@drawable/ic_create"
             android:gravity="start|center_vertical"
+            android:textColor="?attr/colorOnPrimary"
+            android:backgroundTint="?attr/colorPrimaryVariant"
+            android:drawableTint="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="@string/add_review_text_button" />
+            tools:text="@string/add_review_text_button"
+            tools:targetApi="m" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
