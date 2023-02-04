@@ -10,7 +10,7 @@
     card_view:cardCornerRadius="@dimen/cardview_corner_radius_beer"
     card_view:cardElevation="@dimen/cardview_elevation"
     android:layout_margin="@dimen/cardview_margin_beer"
-    android:background="?attr/colorSurface">
+    card_view:cardBackgroundColor="?attr/colorSurface">
 
     <LinearLayout
         android:id="@+id/layout_beer_cardview"
@@ -31,58 +31,59 @@
             android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp">
+            android:layout_marginStart="@dimen/beer_item_cardview_margin">
 
             <TextView
                 android:id="@+id/beer_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/beer_item_cardview_margin"
                 android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textSize="@dimen/beer_name_list_size"
                 android:textStyle="bold"
-                android:maxLines="2"
+                card_view:layout_constraintEnd_toStartOf="@+id/beer_volume"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
                 tools:text="Buzz" />
 
             <TextView
+                android:id="@+id/beer_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:textAppearance="?android:textAppearanceMedium"
+                card_view:drawableLeftCompat="@drawable/ic_vase"
+                card_view:drawableStartCompat="@drawable/ic_vase"
+                card_view:drawableTint="?attr/colorOnSurface"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                tools:text="20L" />
+
+            <TextView
                 android:id="@+id/beer_tagline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="@dimen/beer_item_cardview_margin"
+                android:layout_marginTop="@dimen/beer_item_cardview_margin"
+                android:layout_marginEnd="@dimen/beer_item_cardview_margin"
                 android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:maxLines="2"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textStyle="italic"
-                android:maxLines="2"
-                android:gravity="center_horizontal"
                 card_view:flow_wrapMode="aligned"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/beer_name"
                 tools:text="A real bitter experience!" />
-
-            <TextView
-                android:id="@+id/beer_volume"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:maxLines="1"
-                android:textAppearance="?android:textAppearanceMedium"
-                card_view:drawableStartCompat="@drawable/ic_vase"
-                card_view:drawableLeftCompat="@drawable/ic_vase"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                tools:text="20L"
-                card_view:drawableTint="?attr/colorOnSurface" />
-
             <TextView
                 android:id="@+id/beer_brewed_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/beer_item_cardview_margin"
                 android:fontFamily="sans-serif-medium"
                 android:textAppearance="?android:textAppearanceMedium"
                 card_view:drawableStartCompat="@drawable/ic_keg"

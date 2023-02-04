@@ -15,4 +15,9 @@
     <string name="empty_bar_subtitle_text">Our bar has not yet been stocked, come back later with Internet enabled to discover our ranges!</string>
     <string name="unkown_first_brewed_date">Unknow Date</string>
     <string name="eclamation_points">\??</string>
+    <string name="first_brewed_date_des">First Brewed Date</string>
+    <string name="abv_des">ABV</string>
+    <string name="ph_des">PH</string>
+    <string name="volume_des">Volume created</string>
+    <string name="contributor_des">Contributed by</string>
 </resources>
