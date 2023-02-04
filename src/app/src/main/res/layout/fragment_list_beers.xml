@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.MainActivity"
-    android:layout_marginTop="@dimen/cardview_margin_beer">
+    tools:context=".presentation.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:spanCount="1"
-        tools:listitem="@layout/beer_item_card" />
+        app:spanCount="1" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_empty_bar"
