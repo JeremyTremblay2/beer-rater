@@ -6,6 +6,7 @@
         <item name="colorPrimaryVariant">@color/primaryVariant</item>
         <item name="colorPrimarySurface">@color/surface</item>
         <item name="colorError">@color/error</item>
+        <item name="android:colorBackground">@color/background</item>
         <item name="colorBackgroundFloating">@color/background</item>
         <item name="colorOnPrimary">@color/onPrimary</item>
         <item name="colorOnSurface">@color/onSurface</item>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="?android:attr/colorBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,13 +18,13 @@
             android:layout_marginTop="@dimen/beer_detail_side_margin"
             android:layout_marginEnd="@dimen/beer_detail_side_margin"
             android:fontFamily="sans-serif-medium"
-            tools:text="Buzz"
+            android:maxLines="2"
             android:textSize="@dimen/beer_name_detail_size"
             android:textStyle="bold"
-            android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Buzz" />
 
         <!--app:layout_constraintHeight_percent=".25"-->
         <ImageView
@@ -34,23 +33,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/beer_detail_side_margin"
             android:layout_marginTop="@dimen/beer_small_margin_detail"
-            android:layout_marginEnd="@dimen/beer_detail_side_margin"
             android:adjustViewBounds="true"
-            app:layout_constraintWidth_percent=".25"
-            app:layout_constraintWidth_default="percent"
             android:contentDescription="@string/beer_image_description"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/beer_name_detail"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".25"
             app:srcCompat="@drawable/ic_beer" />
 
         <TextView
             android:id="@+id/beer_tagline_detail"
+            style="@style/standardTextFielsStyle"
             android:layout_width="0dp"
             android:layout_marginStart="@dimen/beer_detail_side_margin"
             android:layout_marginTop="@dimen/beer_small_margin_detail"
             android:layout_marginEnd="@dimen/beer_detail_side_margin"
-            style="@style/standardTextFielsStyle"
             android:textAlignment="center"
             android:textStyle="italic"
             app:flow_wrapMode="aligned"
@@ -63,13 +60,16 @@
             android:id="@+id/cardview_beer_description_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="@dimen/beer_small_margin_detail"
+            android:layout_marginEnd="16dp"
             app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="@dimen/cardview_corner_radius_comment"
             app:cardElevation="@dimen/cardview_elevation"
-            app:layout_constraintEnd_toEndOf="@+id/beer_tagline_detail"
-            app:layout_constraintStart_toStartOf="@+id/beer_tagline_detail"
-            app:layout_constraintTop_toBottomOf="@+id/beer_tagline_detail">
+            app:layout_constraintBottom_toBottomOf="@+id/beer_image_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/beer_image_detail"
+            app:layout_constraintTop_toTopOf="@+id/beer_image_detail">
 
             <TextView
                 android:id="@+id/beer_description_detail"
@@ -101,8 +101,8 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/beer_ph_slider_value"
             app:layout_constraintEnd_toStartOf="@+id/beer_detail_barrier"
-            app:layout_constraintStart_toStartOf="@+id/cardview_beer_description_detail"
-            app:layout_constraintTop_toBottomOf="@+id/cardview_beer_description_detail" />
+            app:layout_constraintStart_toStartOf="@+id/beer_tagline_detail"
+            app:layout_constraintTop_toTopOf="@+id/beer_ph_slider_value" />
 
         <TextView
             android:id="@+id/beer_abv_detail_des"
@@ -155,12 +155,12 @@
             android:valueFrom="0"
             android:valueTo="14"
             app:labelBehavior="visible"
-            app:trackColorInactive="?attr/colorPrimary"
-            app:trackColorActive="?attr/colorPrimaryVariant"
-            app:thumbColor="?attr/colorPrimaryVariant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/beer_detail_barrier"
-            app:layout_constraintTop_toBottomOf="@+id/cardview_beer_description_detail"/>
+            app:layout_constraintTop_toBottomOf="@+id/beer_tagline_detail"
+            app:thumbColor="?attr/colorPrimaryVariant"
+            app:trackColorActive="?attr/colorPrimaryVariant"
+            app:trackColorInactive="?attr/colorPrimary" />
 
         <LinearLayout
             android:id="@+id/layout_abv_values"
@@ -174,8 +174,8 @@
             <TextView
                 android:id="@+id/beer_abv_textview_value"
                 style="@style/standardTextFielsStyle"
-                android:textAlignment="textEnd"
                 android:layout_marginStart="@dimen/beer_detail_side_margin"
+                android:textAlignment="textEnd"
                 app:layout_constraintBottom_toBottomOf="@+id/beer_abv_seekbar_value"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="5.4" />
@@ -197,11 +197,11 @@
             android:id="@+id/beer_first_brewed_date_detail_value"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:drawablePadding="@dimen/beer_keg_drawable_padding_detail"
-            android:maxLines="1"
             android:layout_marginEnd="@dimen/beer_small_margin_detail"
-            android:textAlignment="textEnd"
+            android:drawablePadding="@dimen/beer_keg_drawable_padding_detail"
             android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:textAlignment="textEnd"
             android:textAppearance="?android:textAppearanceMedium"
             app:drawableEndCompat="@drawable/ic_keg"
             app:drawableRightCompat="@drawable/ic_keg"
@@ -217,9 +217,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:drawablePadding="@dimen/beer_keg_drawable_padding_detail"
+            android:fontFamily="sans-serif-medium"
             android:maxLines="1"
             android:textAlignment="textEnd"
-            android:fontFamily="sans-serif-medium"
             android:textAppearance="?android:textAppearanceMedium"
             app:drawableEndCompat="@drawable/ic_person"
             app:drawableRightCompat="@drawable/ic_person"
@@ -232,12 +232,12 @@
 
         <TextView
             android:id="@+id/beer_volume_detail_value"
-            android:layout_width="0dp"
             style="@style/standardTextFielsStyle"
-            android:textAppearance="?android:textAppearanceMedium"
+            android:layout_width="0dp"
             android:textAlignment="textEnd"
-            app:drawableRightCompat="@drawable/ic_vase"
+            android:textAppearance="?android:textAppearanceMedium"
             app:drawableEndCompat="@drawable/ic_vase"
+            app:drawableRightCompat="@drawable/ic_vase"
             app:drawableTint="?attr/colorOnSurface"
             app:layout_constraintBottom_toBottomOf="@+id/beer_volume_detail_des"
             app:layout_constraintEnd_toEndOf="@+id/beer_contributor_detail_value"
@@ -249,8 +249,8 @@
             android:id="@+id/reviews_section_group"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="@+id/beer_volume_detail_value"
-            app:constraint_referenced_ids="reviews_section_name, recycler_view_reviews"/>
+            app:constraint_referenced_ids="reviews_section_name, recycler_view_reviews"
+            app:layout_constraintBottom_toBottomOf="@+id/beer_volume_detail_value" />
 
         <TextView
             android:id="@+id/reviews_section_name"
@@ -259,7 +259,7 @@
             android:text="@string/reviews_section"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/cardview_beer_description_detail"
+            app:layout_constraintStart_toStartOf="@+id/beer_tagline_detail"
             app:layout_constraintTop_toBottomOf="@+id/beer_volume_detail_value" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -267,11 +267,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/button_write_review"
             app:layout_constraintEnd_toEndOf="@+id/cardview_beer_description_detail"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/reviews_section_name"
             app:layout_constraintTop_toBottomOf="@+id/reviews_section_name"
-            app:layout_constraintBottom_toTopOf="@+id/button_write_review"
             app:spanCount="1"
             tools:listitem="@layout/comment_item_card" />
 
