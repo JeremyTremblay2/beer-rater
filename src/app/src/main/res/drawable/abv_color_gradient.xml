@@ -3,8 +3,8 @@
     <item>
         <shape>
             <gradient
-                android:endColor="@color/smallAbv"
                 android:startColor="@color/bigAbv"
+                android:endColor="@color/smallAbv"
                 android:useLevel="true" />
         </shape>
     </item>
