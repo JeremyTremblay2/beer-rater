@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FF243141</color>
-    <color name="primaryVariant">#87A0B4</color>
-    <color name="secondary">#FF1976d2</color>
-    <color name="secondaryVariant">#FF004ba0</color>
+    <color name="secondary">#FF243141</color>
+    <color name="secondaryVariant">#87A0B4</color>
+    <color name="primary">#FF1976d2</color>
+    <color name="primaryVariant">#FF004ba0</color>
     <color name="background">#FF1b242d</color>
     <color name="surface">#FF243141</color>
     <color name="error">#FF7f0000</color>
@@ -13,8 +13,8 @@
     <color name="onSurface">#FFFFFFFF</color>
     <color name="onError">#FFFFFFFF</color>
 
-    <color name="lessAlcoholColor">#2A6D78</color>
-    <color name="mostAlcoholColor">#073339</color>
+    <color name="lessAlcoholColor">#4C6787</color>
+    <color name="mostAlcoholColor">#326587</color>
 
     <color name="ratingStar">#F3B80B</color>
     <color name="ratingStarEmpty">#C1A232</color>

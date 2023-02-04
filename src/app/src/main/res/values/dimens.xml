@@ -18,4 +18,11 @@
     <dimen name="cardview_padding_beer">10dp</dimen>
     <dimen name="cardview_margin_beer">6dp</dimen>
     <dimen name="cardview_margin_comment">6dp</dimen>
+    <dimen name="beer_keg_drawable_padding_detail">8dp</dimen>
+    <dimen name="beer_detail_side_margin">16dp</dimen>
+    <dimen name="beer_name_detail_size">24sp</dimen>
+    <dimen name="beer_small_margin_detail">6dp</dimen>
+    <dimen name="beer_detail_sections_spacing">24dp</dimen>
+    <dimen name="beer_item_cardview_margin">8dp</dimen>
+    <dimen name="margin_delete_icon_review">16dp</dimen>
 </resources>

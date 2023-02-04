@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- File constructed by following the Material Design recommendations -->
 <resources>
-    <color name="primary">#FF333333</color>
-    <color name="primaryVariant">#FF666666</color>
-    <color name="secondary">#90caf9</color>
-    <color name="secondaryVariant">#5d99c6</color>
+    <color name="secondary">#FF333333</color>
+    <color name="secondaryVariant">#FF666666</color>
+    <color name="primary">#90caf9</color>
+    <color name="primaryVariant">#5d99c6</color>
     <color name="background">#FFefefef</color>
     <color name="surface">#FFEEEEEE</color>
     <color name="error">#FFB00020</color>
-    <color name="onPrimary">#FFFFFFFF</color>
-    <color name="onSecondary">#FF000000</color>
+    <color name="onPrimary">#000000</color>
+    <color name="onSecondary">#FFFFFF</color>
     <color name="onBackground">#FF000000</color>
     <color name="onSurface">#FF000000</color>
     <color name="onError">#FF000000</color>
 
-    <color name="lessAlcoholColor">#E0FBFF</color>
-    <color name="mostAlcoholColor">#4AEBFF</color>
+    <color name="lessAlcoholColor">#F3F8F8</color>
+    <color name="mostAlcoholColor">#D3F5F8</color>
 
     <color name="ratingStar">#BC900E</color>
     <color name="ratingStarEmpty">#9F8939</color>
     <color name="ratingStarBackground">#FFF3C7</color>
+
+    <color name="smallAbv">#EFD5D5</color>
+    <color name="bigAbv">#DF2C2C</color>
+    <color name="transparent">#00000000</color>
 
 </resources>
