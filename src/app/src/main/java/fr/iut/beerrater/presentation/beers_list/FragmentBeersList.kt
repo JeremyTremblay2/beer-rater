@@ -15,7 +15,7 @@ import fr.iut.beerrater.R
 
 @AndroidEntryPoint
 class FragmentBeersList : Fragment() {
-    private val beerAdapter: BeerRecyclerViewAdapter = BeerRecyclerViewAdapter(ArrayList())
+    private val beerAdapter: BeerRecyclerViewAdapter = BeerRecyclerViewAdapter()
     private lateinit var groupEmptyBar: Group
     private lateinit var viewModel: BeersListViewModel
 
@@ -39,7 +39,7 @@ class FragmentBeersList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.beers.observe(viewLifecycleOwner) {
-            viewModel.beers.value?.let { it1 -> beerAdapter.updateList(it1) }
+            beerAdapter.submitList(it)
             groupEmptyBar.visibility = View.GONE
         }
     }

@@ -1,14 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
-
-apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     namespace 'fr.iut.beerrater'
     compileSdk 33
+
+    buildFeatures {
+        dataBinding true
+    }
 
     defaultConfig {
         applicationId "fr.iut.beerrater"

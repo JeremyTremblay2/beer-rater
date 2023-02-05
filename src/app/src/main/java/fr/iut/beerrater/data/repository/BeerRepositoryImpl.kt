@@ -3,13 +3,18 @@ package fr.iut.beerrater.data.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import fr.iut.beerrater.common.Constants.APP_NAME
 import fr.iut.beerrater.data.data_source.api.BeerApi
+import fr.iut.beerrater.data.data_source.api.dto.toBeer
 import fr.iut.beerrater.data.data_source.database.BeerDao
 import fr.iut.beerrater.domain.model.Beer
 import fr.iut.beerrater.domain.model.BeerWithReviews
 import fr.iut.beerrater.domain.model.Review
 import fr.iut.beerrater.domain.repository.BeerRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 
 class BeerRepositoryImpl(
     private val dao: BeerDao,
@@ -17,54 +22,87 @@ class BeerRepositoryImpl(
 ) : BeerRepository {
 
     override suspend fun getAllBeersWithReviews(): LiveData<List<BeerWithReviews>> {
-        /*val beers = dao.getAllBeersWithReviews().value
-        beers.let {
-            if (it == null || it.isEmpty()) {
+        /*val beers = dao.getAllBeersWithReviews()
+        return liveData {
+            beers.ifEmpty {
                 val apiBeers = api.getBeers()
                 apiBeers.forEach { beer -> dao.insertBeer(beer) }
-                return Result.success(apiBeers);
             }
-            return
         }*/
-        TODO("Not yet implemented")
+        TODO("Not implemented")
     }
 
-    override suspend fun getAllBeers(): LiveData<List<Beer>> {
-        val beers = dao.getAllBeers().value
-        Log.i(APP_NAME, "Number of beers in the database: $beers.size()")
-        beers.let {
-            if (it == null || it.isEmpty()) {
+    override fun getAllBeers(): LiveData<List<Beer>> {
+        /*Log.i(APP_NAME, "GET ALL BEERS.")
+        return withContext(Dispatchers.IO) {
+            val beers = async(dao.getAllBeers())
+            beers.await()
+            Log.i(APP_NAME, "Number of beers get from DB: ${beers.size}")
+            if (beers.isNotEmpty()) return@withContext beers
+            return liveData<<List<Beer>> {
                 val apiBeers = api.getBeers()
                 apiBeers.forEach { beer -> dao.insertBeer(beer) }
-                return MutableLiveData(apiBeers)
+                apiBeers
             }
-            return MutableLiveData(beers)
+        }*/
+        return liveData {
+            emit(
+                api.getBeers().map { it.toBeer() }
+            )
         }
     }
 
-    override suspend fun getBeerWithReviewsById(beerId: Int): BeerWithReviews? {
-        val beer = dao.getBeerWithReviewsById(beerId)
-        if (beer == null) {
-            val apiBeer = api.getBeerById(beerId) ?: return null
-            dao.insertBeer(apiBeer)
-            return BeerWithReviews(apiBeer, ArrayList())
-        }
-        return beer
+    override suspend fun getBeerWithReviewsById(beerId: Int): LiveData<BeerWithReviews?> {
+        /*val beer = dao.getBeerWithReviewsById(beerId)
+        return liveData {
+            if (beer == null) {
+                val apiBeer = api.getBeerById(beerId)
+                apiBeer?.let {
+                    dao.insertBeer(it)
+                    BeerWithReviews(it, ArrayList())
+                }
+            }
+        }*/
+        TODO("Not implemented")
+    }
+
+    override suspend fun getReviewById(reviewId: Int): LiveData<Review?> {
+        /*Log.i(APP_NAME, "GET ALL BEERS.")
+        return withContext(Dispatchers.IO) {
+            val beers = async(dao.getAllBeers())
+            beers.await()
+            Log.i(APP_NAME, "Number of beers get from DB: ${beers.size}")
+            if (beers.isNotEmpty()) return@withContext beers
+            return liveData<<List<Beer>> {
+                val apiBeers = api.getBeers()
+                apiBeers.forEach { beer -> dao.insertBeer(beer) }
+                apiBeers
+            }
+        }*/
+        return dao.getReviewById(reviewId)
     }
 
     override suspend fun insertReview(beer: Beer, review: Review) {
+        Log.i(BEER_REPOSITORY_NAME, "INSERT REVIEW. Review: \"$review\" for the beer \"${beer.beerId}\".")
         return dao.insertReview(beer, review)
     }
 
     override suspend fun updateReview(review: Review) {
+        Log.i(BEER_REPOSITORY_NAME, "UPDATE REVIEW. Review: \"$review\".")
         return dao.updateReview(review)
     }
 
     override suspend fun deleteReviewById(reviewId: Int) {
+        Log.i(BEER_REPOSITORY_NAME, "DELETE REVIEW. Review id: \"$reviewId\".")
         return dao.deleteReviewById(reviewId)
     }
 
     override suspend fun deleteAllReviews() {
+        Log.i(BEER_REPOSITORY_NAME, "DELETE ALL REVIEWS.")
         return dao.deleteAllReviews()
+    }
+
+    companion object {
+        private const val BEER_REPOSITORY_NAME = "BeerRepository"
     }
 }

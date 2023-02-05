@@ -18,4 +18,13 @@
     <string name="reviews_section">Commentaires</string>
     <string name="button_write_review_description">Un bouton permettant d\'ajouter un avis à cette bière</string>
     <string name="add_review_text_button">Ajouter un avis</string>
+    <string name="button_delete_review_description">Permet d\'effacer un commentaire</string>
+    <string name="title_text">Titre</string>
+    <string name="add_a_review_text_title">Ajouter un avis</string>
+    <string name="rating_bar_review_description">Indique le niveau de satisfaction des gens pour cette bière</string>
+    <string name="description_text">Description</string>
+    <string name="add_edit_review_cancel_button_description">Annuler les modifications</string>
+    <string name="add_edit_review_save_button_description">Sauvegarder les modifications</string>
+    <string name="save_text">Enregistrer</string>
+    <string name="cancel_text">Annuler</string>
 </resources>
