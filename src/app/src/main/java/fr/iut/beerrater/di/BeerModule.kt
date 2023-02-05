@@ -13,7 +13,7 @@ import fr.iut.beerrater.data.data_source.api.BeerApi
 import fr.iut.beerrater.data.data_source.database.BeerDatabase
 import fr.iut.beerrater.data.repository.BeerRepositoryImpl
 import fr.iut.beerrater.domain.repository.BeerRepository
-import fr.iut.beerrater.domain.use_cases.GetAllBeersUseCase
+import fr.iut.beerrater.domain.use_cases.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Scope
@@ -58,4 +58,20 @@ object BeerModule {
     @Provides
     @Singleton
     fun provideGetAllBeersUseCase(repository: BeerRepository) = GetAllBeersUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetBeerByIdUseCase(repository: BeerRepository) = GetBeerByIdUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetReviewByIdUseCase(repository: BeerRepository) = GetReviewByIdUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideAddEditReviewUseCase(repository: BeerRepository) = AddEditReviewUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideDeleteReviewUseCase(repository: BeerRepository) = DeleteReviewUseCase(repository)
 }
