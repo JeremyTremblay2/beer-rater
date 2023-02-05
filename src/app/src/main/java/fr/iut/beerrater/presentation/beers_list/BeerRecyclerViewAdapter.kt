@@ -8,16 +8,21 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fr.iut.beerrater.R
 import fr.iut.beerrater.domain.model.Beer
 import java.text.SimpleDateFormat
 import java.util.*
 
-class BeerRecyclerViewAdapter(private var beers: List<Beer>) :
-    RecyclerView.Adapter<BeerRecyclerViewAdapter.BeerViewHolder>() {
+class BeerRecyclerViewAdapter() :
+    ListAdapter<Beer, BeerRecyclerViewAdapter.BeerViewHolder>(DiffUtilBeerCallback) {
 
-    override fun getItemCount() = beers.size
+    private object DiffUtilBeerCallback : DiffUtil.ItemCallback<Beer>() {
+        override fun areItemsTheSame(oldItem: Beer, newItem: Beer) = oldItem.beerId == newItem.beerId
+        override fun areContentsTheSame(oldItem: Beer, newItem: Beer) = oldItem == newItem
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         BeerViewHolder(
@@ -30,7 +35,7 @@ class BeerRecyclerViewAdapter(private var beers: List<Beer>) :
 
 
     override fun onBindViewHolder(holder: BeerViewHolder, position: Int) =
-        holder.bind(beers[position])
+        holder.bind(getItem(position))
 
 
     class BeerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -58,10 +63,5 @@ class BeerRecyclerViewAdapter(private var beers: List<Beer>) :
             val color = ColorUtils.blendARGB(startColor, endColor, beer.abv / 5)
             beerCardview.setCardBackgroundColor(color)
         }
-    }
-
-    public fun updateList(beers: List<Beer>) {
-        this.beers = beers;
-        notifyDataSetChanged()
     }
 }

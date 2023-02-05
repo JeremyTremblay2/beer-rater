@@ -10,4 +10,6 @@ data class Review(@PrimaryKey(autoGenerate = true) val reviewId: Int = 0,
                   val title: String = "",
                   val comment: String = "",
                   val rating: Int = 0,
-                  @ColumnInfo(name = "review_date") val reviewDate: Date? = null)
+                  @ColumnInfo(name = "review_date") var reviewDate: Date? = null)
+
+class InvalidReviewException(message: String) : Exception(message)

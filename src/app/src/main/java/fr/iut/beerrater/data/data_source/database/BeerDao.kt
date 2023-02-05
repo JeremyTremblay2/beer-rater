@@ -23,7 +23,10 @@ interface BeerDao {
 
     @Transaction
     @Query("SELECT * FROM Beer WHERE beerId = :beerId")
-    suspend fun getBeerWithReviewsById(beerId: Int): BeerWithReviews?
+    fun getBeerWithReviewsById(beerId: Int): LiveData<BeerWithReviews?>
+
+    @Query("SELECT * FROM Review WHERE reviewId = :reviewId")
+    fun getReviewById(reviewId: Int): LiveData<Review?>
 
     @Insert(onConflict = REPLACE)
     suspend fun insertBeer(vararg beer: Beer)

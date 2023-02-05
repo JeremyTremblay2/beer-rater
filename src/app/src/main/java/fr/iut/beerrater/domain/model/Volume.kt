@@ -7,8 +7,8 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "Beer_Volume")
 data class Volume(@PrimaryKey(autoGenerate = true) val volumeId: Int = 0,
-                  @SerializedName("value") @ColumnInfo(name = "volume") val value: Int = 0,
-                  @SerializedName("unit") val unit: VolumeUnit
+                  @ColumnInfo(name = "volume") val value: Int = 0,
+                  val unit: VolumeUnit
 )
 {
     enum class VolumeUnit {
