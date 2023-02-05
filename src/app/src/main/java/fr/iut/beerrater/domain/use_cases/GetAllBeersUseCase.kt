@@ -7,7 +7,7 @@ import fr.iut.beerrater.domain.repository.BeerRepository
 class GetAllBeersUseCase(
     private val repository: BeerRepository
 ) {
-    suspend operator fun invoke(): LiveData<List<Beer>> {
+    operator fun invoke(): LiveData<List<Beer>> {
         return repository.getAllBeers()
     }
 }
