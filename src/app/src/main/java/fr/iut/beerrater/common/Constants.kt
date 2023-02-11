@@ -6,4 +6,5 @@ object Constants {
     const val FULL_API_URL = "$API_URL$API_VERSION_USED/"
     const val APP_NAME = "BeerRater"
     const val NEW_REVIEW_ID = 0
+    const val DEFAULT_BEER_ID = 0
 }

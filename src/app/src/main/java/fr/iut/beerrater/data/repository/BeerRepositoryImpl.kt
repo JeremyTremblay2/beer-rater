@@ -21,7 +21,7 @@ class BeerRepositoryImpl(
     private val api: BeerApi
 ) : BeerRepository {
 
-    override suspend fun getAllBeersWithReviews(): LiveData<List<BeerWithReviews>> {
+    override fun getAllBeersWithReviews(): LiveData<List<BeerWithReviews>> {
         /*val beers = dao.getAllBeersWithReviews()
         return liveData {
             beers.ifEmpty {
@@ -29,7 +29,7 @@ class BeerRepositoryImpl(
                 apiBeers.forEach { beer -> dao.insertBeer(beer) }
             }
         }*/
-        TODO("Not implemented")
+        return dao.getAllBeersWithReviews()
     }
 
     override fun getAllBeers(): LiveData<List<Beer>> {
@@ -45,14 +45,10 @@ class BeerRepositoryImpl(
                 apiBeers
             }
         }*/
-        return liveData {
-            emit(
-                api.getBeers().map { it.toBeer() }
-            )
-        }
+        return dao.getAllBeers()
     }
 
-    override suspend fun getBeerWithReviewsById(beerId: Int): LiveData<BeerWithReviews?> {
+    override fun getBeerWithReviewsById(beerId: Int): LiveData<BeerWithReviews?> {
         /*val beer = dao.getBeerWithReviewsById(beerId)
         return liveData {
             if (beer == null) {
@@ -63,10 +59,10 @@ class BeerRepositoryImpl(
                 }
             }
         }*/
-        TODO("Not implemented")
+        return dao.getBeerWithReviewsById(beerId)
     }
 
-    override suspend fun getReviewById(reviewId: Int): LiveData<Review?> {
+    override fun getReviewById(reviewId: Int): LiveData<Review?> {
         /*Log.i(APP_NAME, "GET ALL BEERS.")
         return withContext(Dispatchers.IO) {
             val beers = async(dao.getAllBeers())
@@ -84,22 +80,30 @@ class BeerRepositoryImpl(
 
     override suspend fun insertReview(beer: Beer, review: Review) {
         Log.i(BEER_REPOSITORY_NAME, "INSERT REVIEW. Review: \"$review\" for the beer \"${beer.beerId}\".")
-        return dao.insertReview(beer, review)
+        withContext(Dispatchers.IO) {
+            dao.insertReview(beer, review)
+        }
     }
 
     override suspend fun updateReview(review: Review) {
         Log.i(BEER_REPOSITORY_NAME, "UPDATE REVIEW. Review: \"$review\".")
-        return dao.updateReview(review)
+        withContext(Dispatchers.IO) {
+            dao.updateReview(review)
+        }
     }
 
     override suspend fun deleteReviewById(reviewId: Int) {
         Log.i(BEER_REPOSITORY_NAME, "DELETE REVIEW. Review id: \"$reviewId\".")
-        return dao.deleteReviewById(reviewId)
+        withContext(Dispatchers.IO) {
+            dao.deleteReviewById(reviewId)
+        }
     }
 
     override suspend fun deleteAllReviews() {
         Log.i(BEER_REPOSITORY_NAME, "DELETE ALL REVIEWS.")
-        return dao.deleteAllReviews()
+        withContext(Dispatchers.IO) {
+            dao.deleteAllReviews()
+        }
     }
 
     companion object {

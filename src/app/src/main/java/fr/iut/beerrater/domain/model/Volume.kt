@@ -18,7 +18,7 @@ data class Volume(@PrimaryKey(autoGenerate = true) val volumeId: Int = 0,
         GALLON
     }
 
-    override fun toString(): String {
+    /*override fun toString(): String {
         return String.format("%s%c", value, unit.toString()[0])
-    }
+    }*/
 }

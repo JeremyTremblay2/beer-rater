@@ -16,19 +16,18 @@
         android:theme="@style/Theme.BeerRater.NoActionBar"
         tools:targetApi="33">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.beers_list.BeerListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <activity
+            android:name=".presentation.beer_detail.BeerDetailActivity"
+            android:parentActivityName=".presentation.beers_list.BeerListActivity" />
     </application>
 </manifest>
