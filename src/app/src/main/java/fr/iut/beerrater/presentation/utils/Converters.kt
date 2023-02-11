@@ -1,6 +1,7 @@
 package fr.iut.beerrater.presentation.utils
 
 import android.content.Context
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import fr.iut.beerrater.R
@@ -8,7 +9,7 @@ import fr.iut.beerrater.domain.model.Volume
 import java.text.SimpleDateFormat
 import java.util.*
 
-object BeerListConverters {
+object Converters {
     private val format = SimpleDateFormat("MM/yyyy", Locale.US)
 
     @JvmStatic
@@ -26,9 +27,18 @@ object BeerListConverters {
             ?: context.getString(R.string.unkown_first_brewed_date)
 
     @JvmStatic
-    fun abuToColor(context: Context, abv: Float): Int {
+    fun abvToColor(context: Context, abv: Float): Int {
         val startColor = ContextCompat.getColor(context, R.color.lessAlcoholColor)
         val endColor = ContextCompat.getColor(context, R.color.mostAlcoholColor)
         return ColorUtils.blendARGB(startColor, endColor, abv / 5)
     }
+
+    @JvmStatic
+    fun floatToInt(value: Float) = value.toInt()
+
+    @JvmStatic
+    fun floatToString(value: Float) = value.toString()
+
+    @JvmStatic
+    fun booleanToVisibility(value: Boolean) = if (!value) View.GONE else View.VISIBLE
 }
