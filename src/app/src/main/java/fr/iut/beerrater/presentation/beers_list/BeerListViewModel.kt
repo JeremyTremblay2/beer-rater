@@ -14,8 +14,8 @@ class BeersListViewModel @Inject constructor(
     private val getAllBeersUseCase: GetAllBeersUseCase
     ) : ViewModel() {
 
-    var beers: LiveData<List<Beer>> = getAllBeersUseCase()
-    //val groupVisibility = Transformations.map(_beers, List<Beer>::isEmpty)
+    val beers: LiveData<List<Beer>> = getAllBeersUseCase()
+    val groupVisibility = Transformations.map(beers, List<Beer>::isEmpty)
 
     init {
         getAllBeers()
