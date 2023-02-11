@@ -3,12 +3,12 @@
 <resources>
     <color name="secondary">#FF333333</color>
     <color name="secondaryVariant">#FF666666</color>
-    <color name="primary">#FF1976d2</color>
-    <color name="primaryVariant">#FF004ba0</color>
+    <color name="primary">#90caf9</color>
+    <color name="primaryVariant">#5d99c6</color>
     <color name="background">#FFefefef</color>
     <color name="surface">#FFEEEEEE</color>
     <color name="error">#FFB00020</color>
-    <color name="onPrimary">#FFFFFF</color>
+    <color name="onPrimary">#000000</color>
     <color name="onSecondary">#FFFFFF</color>
     <color name="onBackground">#FF000000</color>
     <color name="onSurface">#FF000000</color>
@@ -21,8 +21,8 @@
     <color name="ratingStarEmpty">#9F8939</color>
     <color name="ratingStarBackground">#FFF3C7</color>
 
-    <color name="smallAbv">#EFD5D5</color>
-    <color name="bigAbv">#DF2C2C</color>
+    <color name="smallAbv">#DF2C2C</color>
+    <color name="bigAbv">#EFD5D5</color>
     <color name="transparent">#00000000</color>
 
 </resources>

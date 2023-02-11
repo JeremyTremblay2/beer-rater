@@ -2,13 +2,12 @@
 <resources>
     <color name="secondary">#FF243141</color>
     <color name="secondaryVariant">#87A0B4</color>
-    <color name="primary">#90caf9</color>
-    <color name="primaryVariant">#5d99c6</color>
-
+    <color name="primary">#FF1976d2</color>
+    <color name="primaryVariant">#FF004ba0</color>
     <color name="background">#FF1b242d</color>
     <color name="surface">#FF243141</color>
     <color name="error">#FF7f0000</color>
-    <color name="onPrimary">#000000</color>
+    <color name="onPrimary">#FFFFFF</color>
     <color name="onSecondary">#FFFFFFFF</color>
     <color name="onBackground">#FFFFFFFF</color>
     <color name="onSurface">#FFFFFFFF</color>

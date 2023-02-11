@@ -25,7 +25,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.BeerRater.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.BeerRater.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="Theme.BeerRater.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="default_rating_bar_style" parent="Theme.AppCompat">

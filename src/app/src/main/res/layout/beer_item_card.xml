@@ -1,101 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/beer_cardview"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    card_view:cardCornerRadius="@dimen/cardview_corner_radius_beer"
-    card_view:cardElevation="@dimen/cardview_elevation"
-    android:layout_margin="@dimen/cardview_margin_beer"
-    card_view:cardBackgroundColor="?attr/colorSurface">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/layout_beer_cardview"
+    <data>
+
+        <import type="fr.iut.beerrater.presentation.utils.Converters" />
+
+        <variable
+            name="beer"
+            type="fr.iut.beerrater.domain.model.Beer" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/beer_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/cardview_padding_beer">
+        card_view:cardCornerRadius="@dimen/cardview_corner_radius_beer"
+        card_view:cardElevation="@dimen/cardview_elevation"
+        android:layout_margin="@dimen/cardview_margin_beer"
+        card_view:cardBackgroundColor="@{Converters.abvToColor(context, beer.abv)}">
 
-        <ImageView
-            android:id="@+id/beer_image"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:maxHeight="300dp"
-            android:contentDescription="@string/beer_image_description" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_weight="2"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/layout_beer_cardview"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/beer_item_cardview_margin">
+            android:orientation="horizontal"
+            android:padding="@dimen/cardview_padding_beer">
 
-            <TextView
-                android:id="@+id/beer_name"
+            <ImageView
+                android:id="@+id/beer_image"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:maxHeight="300dp"
+                android:src="@drawable/ic_beer"
+                android:contentDescription="@string/beer_image_description" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_weight="2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/beer_item_cardview_margin"
-                android:fontFamily="sans-serif-medium"
-                android:maxLines="2"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textSize="@dimen/beer_name_list_size"
-                android:textStyle="bold"
-                card_view:layout_constraintEnd_toStartOf="@+id/beer_volume"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                tools:text="Buzz" />
+                android:layout_marginStart="@dimen/beer_item_cardview_margin">
 
-            <TextView
-                android:id="@+id/beer_volume"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:maxLines="1"
-                android:textAppearance="?android:textAppearanceMedium"
-                card_view:drawableLeftCompat="@drawable/ic_vase"
-                card_view:drawableStartCompat="@drawable/ic_vase"
-                card_view:drawableTint="?attr/colorOnSurface"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                tools:text="20L" />
+                <TextView
+                    android:id="@+id/beer_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/beer_item_cardview_margin"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLines="2"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="@dimen/beer_name_list_size"
+                    android:textStyle="bold"
+                    card_view:layout_constraintEnd_toStartOf="@+id/beer_volume"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    android:text="@{beer.name}"
+                    tools:text="Buzz" />
 
-            <TextView
-                android:id="@+id/beer_tagline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/beer_item_cardview_margin"
-                android:layout_marginTop="@dimen/beer_item_cardview_margin"
-                android:layout_marginEnd="@dimen/beer_item_cardview_margin"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center_horizontal"
-                android:maxLines="2"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textStyle="italic"
-                card_view:flow_wrapMode="aligned"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/beer_name"
-                tools:text="A real bitter experience!" />
-            <TextView
-                android:id="@+id/beer_brewed_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/beer_item_cardview_margin"
-                android:fontFamily="sans-serif-medium"
-                android:textAppearance="?android:textAppearanceMedium"
-                card_view:drawableStartCompat="@drawable/ic_keg"
-                card_view:drawableLeftCompat="@drawable/ic_keg"
-                android:drawablePadding="@dimen/keg_padding_beer_item"
-                android:maxLines="1"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/beer_tagline"
-                tools:text="07/2006"
-                card_view:drawableTint="?attr/colorOnSurface" />
+                <TextView
+                    android:id="@+id/beer_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLines="1"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    card_view:drawableLeftCompat="@drawable/ic_vase"
+                    card_view:drawableStartCompat="@drawable/ic_vase"
+                    card_view:drawableTint="?attr/colorOnSurface"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    tools:text="20L"
+                    android:text="@{Converters.volumeToString(context, beer.volume)}"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/beer_tagline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/beer_item_cardview_margin"
+                    android:layout_marginTop="@dimen/beer_item_cardview_margin"
+                    android:layout_marginEnd="@dimen/beer_item_cardview_margin"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textStyle="italic"
+                    card_view:flow_wrapMode="aligned"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/beer_name"
+                    tools:text="A real bitter experience!"
+                    android:text="@{beer.tagline}"/>
+
+                <TextView
+                    android:id="@+id/beer_brewed_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/beer_item_cardview_margin"
+                    android:fontFamily="sans-serif-medium"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    card_view:drawableStartCompat="@drawable/ic_keg"
+                    card_view:drawableLeftCompat="@drawable/ic_keg"
+                    android:drawablePadding="@dimen/keg_padding_beer_item"
+                    android:maxLines="1"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/beer_tagline"
+                    tools:text="07/2006"
+                    card_view:drawableTint="?attr/colorOnSurface"
+                    android:text="@{Converters.dateToString(context, beer.firstBrewedDate)}"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

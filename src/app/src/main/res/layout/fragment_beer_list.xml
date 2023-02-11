@@ -8,7 +8,7 @@
 
         <variable
             name="beerListViewModel"
-            type="fr.iut.beerrater.presentation.beers_list.BeersListViewModel" />
+            type="fr.iut.beerrater.presentation.beers_list.BeerListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

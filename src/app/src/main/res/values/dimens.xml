@@ -1,7 +1,7 @@
 <resources>
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
-    <dimen name="icon_title_space">32dp</dimen>
+    <dimen name="icon_title_space">0dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="space_between_elements_empty_group">16dp</dimen>
@@ -29,4 +29,9 @@
     <dimen name="add_edit_review_top_margin">8dp</dimen>
     <dimen name="add_edit_review_standard_margin">16dp</dimen>
     <dimen name="add_edit_review_title_size">24sp</dimen>
+    <dimen name="margin_beer_detail_contributor">10dp</dimen>
+    <dimen name="margin_beer_detail_date">12dp</dimen>
+    <dimen name="margin_beer_detail_volume">8dp</dimen>
+    <dimen name="margin_button_add_review_beer_detail">16dp</dimen>
+    <dimen name="margin_bottom_button_add_review_beer_detail">8dp</dimen>
 </resources>

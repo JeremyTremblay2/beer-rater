@@ -29,4 +29,7 @@
     <string name="add_edit_review_save_button_description">Save the modifications</string>
     <string name="save_text">Save</string>
     <string name="cancel_text">Cancel</string>
+    <string name="gallons_unit">G</string>
+    <string name="liter_unit">L</string>
+    <string name="no_reviews_text">No reviews yet.</string>
 </resources>
