@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import fr.iut.beerrater.R
-import fr.iut.beerrater.presentation.beers_list.FragmentBeersList
+import fr.iut.beerrater.presentation.beers_list.BeerListFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -17,7 +17,9 @@ class MainActivity : AppCompatActivity() {
 
         if (supportFragmentManager.findFragmentById(R.id.fragment_container) == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, FragmentBeersList())
+                .add(R.id.fragment_container,
+                    BeerListFragment()
+                )
                 .commit()
         }
     }

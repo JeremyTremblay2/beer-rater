@@ -12,7 +12,7 @@ import fr.iut.beerrater.domain.repository.BeerRepository
 class GetReviewByIdUseCase(
     private val repository: BeerRepository
 ) {
-    suspend operator fun invoke(reviewId: Int): LiveData<Review?> {
+    operator fun invoke(reviewId: Int): LiveData<Review?> {
         return if (reviewId == NEW_REVIEW_ID) MutableLiveData(Review())
         else repository.getReviewById(reviewId)
     }

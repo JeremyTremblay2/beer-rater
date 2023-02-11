@@ -1,8 +1,12 @@
 package fr.iut.beerrater.presentation.beer_detail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
+import fr.iut.beerrater.common.Constants.DEFAULT_BEER_ID
 import fr.iut.beerrater.domain.model.Beer
 import fr.iut.beerrater.domain.model.BeerWithReviews
 import fr.iut.beerrater.domain.model.Review
@@ -12,15 +16,22 @@ import fr.iut.beerrater.domain.use_cases.GetBeerByIdUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class BeerDetailViewModel(
-
-    private val beerId: Int
+class BeerDetailViewModel @AssistedInject constructor(
+    @Assisted private var beerId: Int,
+    private val getBeerByIdUseCase: GetBeerByIdUseCase,
+    private val deleteReviewUseCase: DeleteReviewUseCase,
+    private val addReviewUseCase: AddEditReviewUseCase
     ): ViewModel() {
-    @Inject private lateinit var getBeerByIdUseCase: GetBeerByIdUseCase
-    @Inject private lateinit var deleteReviewUseCase: DeleteReviewUseCase
-    @Inject private lateinit var addReviewUseCase: AddEditReviewUseCase
+
+    var beer: LiveData<BeerWithReviews?> = getBeerByIdUseCase(beerId)
+    val groupVisibility = Transformations.map(beer) { item ->
+        item?.reviews?.isEmpty() ?: false
+    }
     private var recentlyDeletedReview: Review? = null
-    val beer: LiveData<BeerWithReviews> = getBeerByIdUseCase(beerId)
+
+    init {
+        beer = getBeerByIdUseCase(beerId)
+    }
 
     fun deleteReview(review: Review) {
         viewModelScope.launch {

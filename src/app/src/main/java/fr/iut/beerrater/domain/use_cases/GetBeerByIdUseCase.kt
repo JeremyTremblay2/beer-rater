@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData
 import fr.iut.beerrater.domain.model.Beer
 import fr.iut.beerrater.domain.model.BeerWithReviews
 import fr.iut.beerrater.domain.repository.BeerRepository
+import kotlinx.coroutines.delay
 
 class GetBeerByIdUseCase(
     private val repository: BeerRepository
 ) {
-    suspend operator fun invoke(beerId: Int): LiveData<BeerWithReviews?> {
+    operator fun invoke(beerId: Int): LiveData<BeerWithReviews?> {
         return repository.getBeerWithReviewsById(beerId)
     }
 }

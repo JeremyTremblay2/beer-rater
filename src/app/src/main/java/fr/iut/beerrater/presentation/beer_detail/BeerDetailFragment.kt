@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,11 +15,14 @@ import androidx.lifecycle.get
 import com.google.android.material.slider.Slider
 import dagger.hilt.android.AndroidEntryPoint
 import fr.iut.beerrater.R
-import viewModelFactory
+import fr.iut.beerrater.databinding.FragmentBeerDetailBinding
+import fr.iut.beerrater.di.BeerDetailViewModelFactory
+import fr.iut.beerrater.di.provideFactory
+import fr.iut.beerrater.presentation.beers_list.BeerListViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FragmentBeerDetail : Fragment() {
+class BeerDetailFragment : Fragment() {
     private var listener: OnInteractionListener? = null
     private var beerId: Int = 0
     @Inject
@@ -30,7 +34,7 @@ class FragmentBeerDetail : Fragment() {
     companion object {
         private const val BEER_ID = "fr.iut.beerrater.presentation.beer_detail.beer_id"
 
-        fun newInstance(beerId: Int) = FragmentBeerDetail().apply {
+        fun newInstance(beerId: Int) = BeerDetailFragment().apply {
             arguments = bundleOf(BEER_ID to beerId)
         }
     }
@@ -39,15 +43,12 @@ class FragmentBeerDetail : Fragment() {
         super.onCreate(savedInstanceState)
 
         beerId = savedInstanceState?.getInt(BEER_ID) ?: arguments?.getInt(BEER_ID) ?: 0
-        val beerDetailViewModel by viewModels<BeerDetailViewModel> {
+        this.beerDetailViewModel = ViewModelProvider(this,
             provideFactory(
                 beerDetailViewModelFactory,
                 beerId
             )
-        }
-        this.beerDetailViewModel = beerDetailViewModel
-
-
+        )[BeerDetailViewModel::class.java]
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -57,26 +58,29 @@ class FragmentBeerDetail : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        /*val binding = FragmentDogBinding.inflate(inflater)
-        binding.dogVM = dogVM
+        val binding = FragmentBeerDetailBinding.inflate(inflater, container, false)
+        binding.beerDetailViewModel = beerDetailViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        }*/
-        val view =  inflater.inflate(R.layout.fragment_beer_detail, container, false);
+        val seekBar = binding.root.findViewById<AppCompatSeekBar>(R.id.beer_abv_seekbar_value)
+        seekBar.isEnabled = false
+        return binding.root
+        /*val view =  inflater.inflate(R.layout.fragment_beer_detail, container, false);
         beerName = view.findViewById(R.id.beer_name_detail)
         slider = view.findViewById(R.id.beer_ph_slider_value)
-        return view
+        return view*/
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.beerDetailViewModel.beer.observe(viewLifecycleOwner) {
-            if (it != null) {
+            /*if (it != null) {
                 beerName.text = it.beer.name
                 slider.value = it.beer.ph
-            }
+            }*/
         }
     }
 

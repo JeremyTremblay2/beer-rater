@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fr.iut.beerrater.R
+import fr.iut.beerrater.databinding.BeerItemCardBinding
 import fr.iut.beerrater.domain.model.Beer
 import java.text.SimpleDateFormat
 import java.util.*
 
-class BeerRecyclerViewAdapter() :
+class BeerRecyclerViewAdapter(private val listener: BeerViewHolderListener) :
     ListAdapter<Beer, BeerRecyclerViewAdapter.BeerViewHolder>(DiffUtilBeerCallback) {
 
     private object DiffUtilBeerCallback : DiffUtil.ItemCallback<Beer>() {
@@ -26,42 +27,39 @@ class BeerRecyclerViewAdapter() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         BeerViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.beer_item_card,
+            BeerItemCardBinding.inflate(
+                LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            listener
         )
-
 
     override fun onBindViewHolder(holder: BeerViewHolder, position: Int) =
         holder.bind(getItem(position))
 
 
-    class BeerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val format = SimpleDateFormat("MM/yyyy", Locale.US)
-        private val beerImage = itemView.findViewById<ImageView>(R.id.beer_image)
-        private val beerName = itemView.findViewById<TextView>(R.id.beer_name)
-        private val beerTagline = itemView.findViewById<TextView>(R.id.beer_tagline)
-        private val beerVolume = itemView.findViewById<TextView>(R.id.beer_volume)
-        private val beerBrewedDate = itemView.findViewById<TextView>(R.id.beer_brewed_date)
-        private val beerCardview = itemView.findViewById<CardView>(R.id.beer_cardview)
+    class BeerViewHolder(
+        private val binding: BeerItemCardBinding,
+        listener: BeerViewHolderListener
+    ) : RecyclerView.ViewHolder(binding.root) {
+        val beer: Beer? get() = binding.beer
 
-        var beer: Beer? = null
-            private set
+        init {
+            itemView.setOnClickListener {
+                beer?.let {
+                    listener.onBeerSelected(it.beerId)
+                }
+            }
+        }
 
         fun bind(beer: Beer) {
-            val context = itemView.context
-            this.beer = beer
-            beerName.text = beer.name
-            beerTagline.text = beer.tagline
-            beerVolume.text = beer.volume?.toString() ?: context.getString(R.string.eclamation_points)
-            beerBrewedDate.text = beer.firstBrewedDate?.let { format.format(it) }
-                ?: context.getString(R.string.unkown_first_brewed_date)
-            val startColor = ContextCompat.getColor(context, R.color.lessAlcoholColor)
-            val endColor = ContextCompat.getColor(context, R.color.mostAlcoholColor)
-            val color = ColorUtils.blendARGB(startColor, endColor, beer.abv / 5)
-            beerCardview.setCardBackgroundColor(color)
+            binding.beer = beer
+            binding.executePendingBindings()
         }
+    }
+
+    interface BeerViewHolderListener {
+        fun onBeerSelected(beerId: Int)
     }
 }

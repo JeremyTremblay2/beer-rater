@@ -1,46 +1,66 @@
 package fr.iut.beerrater.presentation.beers_list
 
-import android.opengl.Visibility
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import fr.iut.beerrater.R
+import fr.iut.beerrater.databinding.FragmentBeerListBinding
 
 @AndroidEntryPoint
-class FragmentBeersList : Fragment() {
-    private val beerAdapter: BeerRecyclerViewAdapter = BeerRecyclerViewAdapter()
-    private lateinit var groupEmptyBar: Group
-    private lateinit var viewModel: BeersListViewModel
+class BeerListFragment : Fragment(), BeerRecyclerViewAdapter.BeerViewHolderListener {
+    private var listener: OnInteractionListener? = null
+    private val beerAdapter: BeerRecyclerViewAdapter = BeerRecyclerViewAdapter(this)
+    private lateinit var viewModel: BeerListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[BeersListViewModel::class.java]
+        viewModel = ViewModelProvider(this)[BeerListViewModel::class.java]
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_list_beers, container, false)
-        groupEmptyBar = view.findViewById(R.id.group_empty_bar)
-        val recyclerview = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerview.adapter = beerAdapter
-        return view
+    ): View {
+        val binding = FragmentBeerListBinding.inflate(inflater, container, false)
+        binding.beerListViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        with(binding.recyclerView) {
+            adapter = beerAdapter
+        }
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.beers.observe(viewLifecycleOwner) {
             beerAdapter.submitList(it)
-            groupEmptyBar.visibility = View.GONE
         }
+    }
+
+    interface OnInteractionListener {
+        fun onBeerSelected(beerId: Int)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException("The context $context does not implement OnInteractionListener but it is required.")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    override fun onBeerSelected(beerId: Int) {
+        listener?.onBeerSelected(beerId)
     }
 }

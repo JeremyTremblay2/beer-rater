@@ -6,13 +6,13 @@ import fr.iut.beerrater.domain.model.Review
 import fr.iut.beerrater.domain.model.Beer
 
 interface BeerRepository {
-    suspend fun getAllBeersWithReviews(): LiveData<List<BeerWithReviews>>
+    fun getAllBeersWithReviews(): LiveData<List<BeerWithReviews>>
 
     fun getAllBeers(): LiveData<List<Beer>>
 
-    suspend fun getBeerWithReviewsById(beerId: Int): LiveData<BeerWithReviews?>
+    fun getBeerWithReviewsById(beerId: Int): LiveData<BeerWithReviews?>
 
-    suspend fun getReviewById(reviewId: Int): LiveData<Review?>
+    fun getReviewById(reviewId: Int): LiveData<Review?>
 
     suspend fun insertReview(beer: Beer, review: Review)
 
