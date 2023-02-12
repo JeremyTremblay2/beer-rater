@@ -23,15 +23,14 @@ class BeerDetailViewModel @AssistedInject constructor(
     private val addReviewUseCase: AddEditReviewUseCase
     ): ViewModel() {
 
-    var beer: LiveData<BeerWithReviews?> = getBeerByIdUseCase(beerId)
+    val beer: LiveData<BeerWithReviews?> = getBeerByIdUseCase(beerId)
+    val reviews = Transformations.map(beer) {
+        beer.value?.reviews ?: ArrayList()
+    }
     val groupVisibility = Transformations.map(beer) { item ->
         item?.reviews?.isEmpty() ?: false
     }
     private var recentlyDeletedReview: Review? = null
-
-    init {
-        beer = getBeerByIdUseCase(beerId)
-    }
 
     fun deleteReview(review: Review) {
         viewModelScope.launch {
@@ -42,10 +41,9 @@ class BeerDetailViewModel @AssistedInject constructor(
 
     fun restoreDeletedReview() {
         viewModelScope.launch {
-            addReviewUseCase(beer.value?.beer ?: return@launch,
-                recentlyDeletedReview ?: return@launch)
+            addReviewUseCase(recentlyDeletedReview?.beerId ?: return@launch,
+                recentlyDeletedReview ?: return@launch, true)
             recentlyDeletedReview = null
         }
     }
-
 }

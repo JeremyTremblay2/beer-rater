@@ -1,21 +1,28 @@
 package fr.iut.beerrater.presentation.beer_detail
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import fr.iut.beerrater.R
 import fr.iut.beerrater.common.Constants.APP_NAME
 import fr.iut.beerrater.common.Constants.DEFAULT_BEER_ID
+import fr.iut.beerrater.common.Constants.NEW_REVIEW_ID
+import fr.iut.beerrater.presentation.add_edit_review.AddEditReviewActivity
+import fr.iut.beerrater.presentation.utils.showSnackBar
 
 @AndroidEntryPoint
 class BeerDetailActivity : AppCompatActivity(), BeerDetailFragment.OnInteractionListener {
     private var beerId = DEFAULT_BEER_ID
 
     companion object {
-        private const val BEER_ID = "fr.iut.beerrater.presentation.beer_detail.beer_id"
+        private const val BEER_ID = "fr.iut.beerrater.presentation.beer_detail.activity_beer_id"
 
         fun getIntent(context: Context, beerId: Int) = Intent(
             context,
@@ -25,17 +32,23 @@ class BeerDetailActivity : AppCompatActivity(), BeerDetailFragment.OnInteraction
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        beerId = intent.getIntExtra(BEER_ID, DEFAULT_BEER_ID)
-        super.onCreate(savedInstanceState)
+    private val addEditReviewLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        result -> if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.let {
+                if (AddEditReviewActivity.wasReviewSaved(it)) {
+                    Toast.makeText(this, "Your review has been saved.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        beerId = intent.getIntExtra(BEER_ID, DEFAULT_BEER_ID)
 
         setContentView(R.layout.toolbar_activity)
-
+        setSupportActionBar(findViewById(R.id.toolbar_activity))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         if (supportFragmentManager.findFragmentById(R.id.fragment_container) == null) {
             supportFragmentManager.beginTransaction()
@@ -53,11 +66,15 @@ class BeerDetailActivity : AppCompatActivity(), BeerDetailFragment.OnInteraction
 
     override fun onReviewEdited(reviewId: Int) {
         Log.i(APP_NAME, "Review edited!")
-        //startActivityForResult
+        addEditReviewLauncher.launch(
+            AddEditReviewActivity.newIntent(this, reviewId, beerId)
+        )
     }
 
     override fun onReviewAdded() {
         Log.i(APP_NAME, "Review added!")
-        //startActivityForResult
+        addEditReviewLauncher.launch(
+            AddEditReviewActivity.newIntent(this, NEW_REVIEW_ID, beerId)
+        )
     }
 }
