@@ -1,4 +1,4 @@
-package fr.iut.beerrater.presentation.beers_list
+package fr.iut.beerrater.presentation.beer_list
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel

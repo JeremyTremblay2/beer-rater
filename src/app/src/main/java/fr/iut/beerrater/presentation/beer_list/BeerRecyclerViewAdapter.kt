@@ -1,21 +1,12 @@
-package fr.iut.beerrater.presentation.beers_list
+package fr.iut.beerrater.presentation.beer_list
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.ColorUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import fr.iut.beerrater.R
 import fr.iut.beerrater.databinding.BeerItemCardBinding
 import fr.iut.beerrater.domain.model.Beer
-import java.text.SimpleDateFormat
-import java.util.*
 
 class BeerRecyclerViewAdapter(private val listener: BeerViewHolderListener) :
     ListAdapter<Beer, BeerRecyclerViewAdapter.BeerViewHolder>(DiffUtilBeerCallback) {

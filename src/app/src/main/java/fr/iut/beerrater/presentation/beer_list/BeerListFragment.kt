@@ -1,4 +1,4 @@
-package fr.iut.beerrater.presentation.beers_list
+package fr.iut.beerrater.presentation.beer_list
 
 import android.content.Context
 import android.os.Bundle
@@ -14,12 +14,7 @@ import fr.iut.beerrater.databinding.FragmentBeerListBinding
 class BeerListFragment : Fragment(), BeerRecyclerViewAdapter.BeerViewHolderListener {
     private var listener: OnInteractionListener? = null
     private val beerAdapter: BeerRecyclerViewAdapter = BeerRecyclerViewAdapter(this)
-    private lateinit var viewModel: BeerListViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[BeerListViewModel::class.java]
-    }
+    private lateinit var listViewModel: BeerListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +22,7 @@ class BeerListFragment : Fragment(), BeerRecyclerViewAdapter.BeerViewHolderListe
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentBeerListBinding.inflate(inflater, container, false)
-        binding.beerListViewModel = viewModel
+        binding.beerListViewModel = listViewModel
         binding.lifecycleOwner = viewLifecycleOwner
         with(binding.recyclerView) {
             adapter = beerAdapter
@@ -35,9 +30,14 @@ class BeerListFragment : Fragment(), BeerRecyclerViewAdapter.BeerViewHolderListe
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        listViewModel = ViewModelProvider(this)[BeerListViewModel::class.java]
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.beers.observe(viewLifecycleOwner) {
+        listViewModel.beers.observe(viewLifecycleOwner) {
             beerAdapter.submitList(it)
         }
     }
