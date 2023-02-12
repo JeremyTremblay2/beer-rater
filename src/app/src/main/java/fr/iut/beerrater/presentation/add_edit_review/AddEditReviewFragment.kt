@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import fr.iut.beerrater.R
 import fr.iut.beerrater.common.Constants.DEFAULT_BEER_ID
 import fr.iut.beerrater.common.Constants.NEW_REVIEW_ID
 import fr.iut.beerrater.databinding.FragmentAddEditReviewBinding
@@ -65,6 +67,20 @@ class AddEditReviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        addEditReviewViewModel.reviewLoadingStatus.observe(viewLifecycleOwner) {
+            when (it) {
+                ReviewLoadingStatus.DONE -> listener?.onModificationsSaved()
+                ReviewLoadingStatus.ERROR ->
+                    AlertDialog.Builder(requireActivity())
+                        .setTitle(R.string.edit_review_error_dialog_title)
+                        .setMessage(R.string.edit_review_error_message)
+                        .setNeutralButton(android.R.string.ok, null)
+                        .show()
+                else -> {
+                    // Does nothing
+                }
+            }
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -79,7 +95,6 @@ class AddEditReviewFragment : Fragment() {
         }
         binding.addEditReviewValidateButton.setOnClickListener {
             addEditReviewViewModel.addEditReview()
-            listener?.onModificationsSaved()
         }
     }
 

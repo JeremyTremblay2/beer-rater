@@ -7,6 +7,7 @@ import androidx.core.graphics.ColorUtils
 import androidx.databinding.InverseMethod
 import fr.iut.beerrater.R
 import fr.iut.beerrater.domain.model.Volume
+import fr.iut.beerrater.presentation.add_edit_review.ReviewLoadingStatus
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -58,4 +59,12 @@ object Converters {
 
     @JvmStatic
     fun booleanToVisibility(value: Boolean) = if (!value) View.GONE else View.VISIBLE
+
+    @JvmStatic
+    fun loadingStatusToVisibility(value: ReviewLoadingStatus?) =
+        if (value != null && value == ReviewLoadingStatus.LOADING) View.VISIBLE else View.GONE
+
+    @JvmStatic
+    fun loadingStatusToBoolean(value: ReviewLoadingStatus?) =
+        value != ReviewLoadingStatus.LOADING
 }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -36,7 +37,9 @@ class BeerDetailActivity : AppCompatActivity(), BeerDetailFragment.OnInteraction
         result -> if (result.resultCode == Activity.RESULT_OK) {
             result.data?.let {
                 if (AddEditReviewActivity.wasReviewSaved(it)) {
-                    Toast.makeText(this, "Your review has been saved.", Toast.LENGTH_SHORT).show()
+                    val toast = Toast.makeText(this, getString(R.string.review_saved_toast_text), Toast.LENGTH_SHORT)
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+                    toast.show()
                 }
             }
         }

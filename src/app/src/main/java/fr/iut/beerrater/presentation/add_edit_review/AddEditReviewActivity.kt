@@ -47,6 +47,8 @@ class AddEditReviewActivity : AppCompatActivity(), AddEditReviewFragment.OnInter
         setContentView(R.layout.toolbar_activity)
         setSupportActionBar(findViewById(R.id.toolbar_activity))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = if (reviewId == NEW_REVIEW_ID) getString(R.string.add_a_review_text)
+        else getString(R.string.edit_a_review_text)
 
         if (supportFragmentManager.findFragmentById(R.id.fragment_container) == null) {
             supportFragmentManager.beginTransaction()

@@ -15,13 +15,28 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:backgroundTint="@color/ratingStar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/colorBackground"
             tools:context=".presentation.add_edit_review.AddEditReviewActivity">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:progressTint="?attr/colorPrimary"
+                android:indeterminateTint="?attr/colorPrimary"
+                android:visibility="@{Converters.loadingStatusToVisibility(addEditReviewViewModel.reviewLoadingStatus)}"/>
 
             <EditText
                 android:id="@+id/edit_text_title_review"
@@ -42,7 +57,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="A pleasure to share." />
+                tools:text="A pleasure to share."
+                android:enabled="@{Converters.loadingStatusToBoolean(addEditReviewViewModel.reviewLoadingStatus)}"/>
 
             <RatingBar
                 android:id="@+id/rating_bar_beer_review"
@@ -54,7 +70,8 @@
                 app:layout_constraintStart_toStartOf="@+id/edit_text_title_review"
                 app:layout_constraintTop_toBottomOf="@+id/edit_text_title_review"
                 android:contentDescription="@string/rating_bar_review_description"
-                android:rating="@={Converters.intToFloat(addEditReviewViewModel.review.rating)}"/>
+                android:rating="@={Converters.intToFloat(addEditReviewViewModel.review.rating)}"
+                android:enabled="@{Converters.loadingStatusToBoolean(addEditReviewViewModel.reviewLoadingStatus)}"/>
 
             <EditText
                 android:id="@+id/edit_text_description_review"
@@ -76,7 +93,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/rating_bar_beer_review"
                 tools:text="What an incredible beer ! The first time I taste its savour, my mind explode in a confetti rain. It is a very colorful beer which has multiple interpretations. I strongly recommend!"
                 android:autofillHints="true"
-                android:text="@={addEditReviewViewModel.review.comment}"/>
+                android:text="@={addEditReviewViewModel.review.comment}"
+                android:enabled="@{Converters.loadingStatusToBoolean(addEditReviewViewModel.reviewLoadingStatus)}"/>
 
             <Button
                 android:id="@+id/add_edit_review_cancel_button"
@@ -93,7 +111,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
                 tools:targetApi="m"
-                android:text="@string/cancel_text" />
+                android:text="@string/cancel_text"
+                android:enabled="@{Converters.loadingStatusToBoolean(addEditReviewViewModel.reviewLoadingStatus)}"/>
 
             <Button
                 android:id="@+id/add_edit_review_validate_button"
@@ -110,7 +129,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:targetApi="m"
-                android:text="@string/save_text" />
+                android:text="@string/save_text"
+                android:enabled="@{Converters.loadingStatusToBoolean(addEditReviewViewModel.reviewLoadingStatus)}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

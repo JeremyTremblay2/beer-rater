@@ -24,5 +24,6 @@
     <color name="smallAbv">#DF2C2C</color>
     <color name="bigAbv">#EFD5D5</color>
     <color name="transparent">#00000000</color>
+    <color name="grayTransparent">#20757171</color>
 
 </resources>

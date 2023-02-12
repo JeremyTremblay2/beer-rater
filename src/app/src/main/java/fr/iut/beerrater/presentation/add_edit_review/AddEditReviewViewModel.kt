@@ -10,6 +10,7 @@ import fr.iut.beerrater.domain.model.Review
 import fr.iut.beerrater.domain.use_cases.AddEditReviewUseCase
 import fr.iut.beerrater.domain.use_cases.DeleteReviewUseCase
 import fr.iut.beerrater.domain.use_cases.GetReviewByIdUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class AddEditReviewViewModel @AssistedInject constructor(
@@ -19,9 +20,12 @@ class AddEditReviewViewModel @AssistedInject constructor(
     private val getReviewByIdUseCase: GetReviewByIdUseCase,
     private val deleteReviewUseCase: DeleteReviewUseCase
 ) : ViewModel() {
-    var review: LiveData<Review?> = if (reviewId != NEW_REVIEW_ID) getReviewByIdUseCase(reviewId) else MutableLiveData(Review())
-    private var _isReviewValid: MutableLiveData<Boolean> = MutableLiveData(false)
-    private var _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    private val _reviewLoadingStatus: MutableLiveData<ReviewLoadingStatus?> = MutableLiveData()
+    val reviewLoadingStatus: LiveData<ReviewLoadingStatus?>
+        get() = _reviewLoadingStatus
+
+    val review: LiveData<Review?> = if (reviewId != NEW_REVIEW_ID) getReviewByIdUseCase(reviewId) else MutableLiveData(Review())
 
     fun deleteReview() {
         viewModelScope.launch {
@@ -31,15 +35,17 @@ class AddEditReviewViewModel @AssistedInject constructor(
 
     fun addEditReview() {
         viewModelScope.launch {
-            _isLoading.postValue(true)
+            _reviewLoadingStatus.postValue(ReviewLoadingStatus.LOADING)
+            // Used to simulate a long treatment, it is possible to remove it but the progress bar
+            // will not be visible because the program is too fast to allows us to see it.
+            delay(1000)
             try {
                 addEditReviewUseCase(beerId, review.value ?: return@launch)
-                _isReviewValid.postValue(true)
+                _reviewLoadingStatus.postValue(ReviewLoadingStatus.DONE)
             }
             catch (e: InvalidReviewException) {
-                _isReviewValid.postValue(false)
+                _reviewLoadingStatus.postValue(ReviewLoadingStatus.ERROR)
             }
-            _isLoading.postValue(false)
         }
     }
 }

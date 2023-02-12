@@ -31,4 +31,11 @@
     <string name="liter_unit">L</string>
     <string name="no_reviews_text">Pas encore d\'avis.</string>
     <string name="unkown_comment_date_posted">Publié il y a longtemps.</string>
+    <string name="review_deleted_text">Avis supprimé</string>
+    <string name="undo_text">ANNULER</string>
+    <string name="review_saved_toast_text">Vos modifications ont été enregistrées.</string>
+    <string name="edit_review_error_message">Les sections du titre et du commentaire ne peuvent pas être vides.</string>
+    <string name="edit_review_error_dialog_title">Impossible de créer l\'avis</string>
+    <string name="add_a_review_text">Ajouter un avis</string>
+    <string name="edit_a_review_text">Editer un avis</string>
 </resources>
