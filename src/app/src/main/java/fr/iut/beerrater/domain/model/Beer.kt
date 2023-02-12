@@ -5,10 +5,11 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import fr.iut.beerrater.common.Constants.DEFAULT_BEER_ID
 import java.util.*
 
 @Entity
-data class Beer(@PrimaryKey(autoGenerate = true) val beerId: Int = 0,
+data class Beer(@PrimaryKey(autoGenerate = true) val beerId: Int = DEFAULT_BEER_ID,
                 val name: String = "Beer",
                 val tagline: String = "",
                 @ColumnInfo(name = "first_brewed_date") val firstBrewedDate : Date? = null,

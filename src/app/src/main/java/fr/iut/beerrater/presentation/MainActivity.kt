@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import fr.iut.beerrater.R
-import fr.iut.beerrater.presentation.beers_list.BeerListFragment
+import fr.iut.beerrater.presentation.beer_list.BeerListFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

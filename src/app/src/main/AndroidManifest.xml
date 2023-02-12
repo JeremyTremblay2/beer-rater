@@ -16,8 +16,9 @@
         android:theme="@style/Theme.BeerRater.NoActionBar"
         tools:targetApi="33">
         <activity
-            android:name=".presentation.beers_list.BeerListActivity"
-            android:exported="true">
+            android:name=".presentation.beer_list.BeerListActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,6 +29,9 @@
             android:resource="@array/preloaded_fonts" />
         <activity
             android:name=".presentation.beer_detail.BeerDetailActivity"
-            android:parentActivityName=".presentation.beers_list.BeerListActivity" />
+            android:parentActivityName=".presentation.beer_list.BeerListActivity" />
+        <activity
+            android:name=".presentation.add_edit_review.AddEditReviewActivity"
+            android:parentActivityName=".presentation.beer_detail.BeerDetailActivity" />
     </application>
 </manifest>

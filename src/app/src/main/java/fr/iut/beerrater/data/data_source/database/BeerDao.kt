@@ -1,8 +1,8 @@
 package fr.iut.beerrater.data.data_source.database
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
@@ -11,6 +11,8 @@ import androidx.room.Update
 import fr.iut.beerrater.domain.model.Beer
 import fr.iut.beerrater.domain.model.BeerWithReviews
 import fr.iut.beerrater.domain.model.Review
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @Dao
 interface BeerDao {
@@ -21,8 +23,14 @@ interface BeerDao {
     @Query("SELECT * FROM Beer ORDER BY first_brewed_date ASC")
     fun getAllBeers(): LiveData<List<Beer>>
 
-    @Transaction
+    @Query("SELECT * FROM Review WHERE beerId = :beerId")
+    fun getReviewsFromBeerId(beerId: Int): LiveData<List<Review>>
+
     @Query("SELECT * FROM Beer WHERE beerId = :beerId")
+    fun getBeerById(beerId: Int): LiveData<Beer?>
+
+    @Transaction
+    @Query("SELECT * FROM beer LEFT JOIN review ON beer.beerId = review.beerId WHERE beer.beerId = :beerId")
     fun getBeerWithReviewsById(beerId: Int): LiveData<BeerWithReviews?>
 
     @Query("SELECT * FROM Review WHERE reviewId = :reviewId")
@@ -32,7 +40,7 @@ interface BeerDao {
     suspend fun insertBeer(vararg beer: Beer)
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertReview(beer: Beer, review: Review)
+    suspend fun insertReview(review: Review)
 
     @Update(onConflict = REPLACE)
     suspend fun updateReview(review: Review)

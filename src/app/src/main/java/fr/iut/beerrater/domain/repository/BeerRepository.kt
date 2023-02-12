@@ -14,7 +14,7 @@ interface BeerRepository {
 
     fun getReviewById(reviewId: Int): LiveData<Review?>
 
-    suspend fun insertReview(beer: Beer, review: Review)
+    suspend fun insertReview(review: Review)
 
     suspend fun updateReview(review: Review)
 

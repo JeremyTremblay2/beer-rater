@@ -2,9 +2,7 @@ package fr.iut.beerrater.data.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import fr.iut.beerrater.common.Constants.APP_NAME
 import fr.iut.beerrater.data.data_source.api.BeerApi
 import fr.iut.beerrater.data.data_source.api.dto.toBeer
 import fr.iut.beerrater.data.data_source.database.BeerDao
@@ -13,7 +11,6 @@ import fr.iut.beerrater.domain.model.BeerWithReviews
 import fr.iut.beerrater.domain.model.Review
 import fr.iut.beerrater.domain.repository.BeerRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 class BeerRepositoryImpl(
@@ -45,43 +42,33 @@ class BeerRepositoryImpl(
                 apiBeers
             }
         }*/
+        /*return liveData {
+            val beers = api.getBeers().map {
+                it.toBeer()
+            }
+            beers.map {
+                dao.insertBeer(it)
+            }
+            emit(beers)
+        }*/
         return dao.getAllBeers()
+
     }
 
     override fun getBeerWithReviewsById(beerId: Int): LiveData<BeerWithReviews?> {
-        /*val beer = dao.getBeerWithReviewsById(beerId)
-        return liveData {
-            if (beer == null) {
-                val apiBeer = api.getBeerById(beerId)
-                apiBeer?.let {
-                    dao.insertBeer(it)
-                    BeerWithReviews(it, ArrayList())
-                }
-            }
-        }*/
+        Log.i(BEER_REPOSITORY_NAME, "GET BEER AND REVIEWS BY BEER ID. BeerId: \"$beerId\".")
         return dao.getBeerWithReviewsById(beerId)
     }
 
     override fun getReviewById(reviewId: Int): LiveData<Review?> {
-        /*Log.i(APP_NAME, "GET ALL BEERS.")
-        return withContext(Dispatchers.IO) {
-            val beers = async(dao.getAllBeers())
-            beers.await()
-            Log.i(APP_NAME, "Number of beers get from DB: ${beers.size}")
-            if (beers.isNotEmpty()) return@withContext beers
-            return liveData<<List<Beer>> {
-                val apiBeers = api.getBeers()
-                apiBeers.forEach { beer -> dao.insertBeer(beer) }
-                apiBeers
-            }
-        }*/
+        Log.i(BEER_REPOSITORY_NAME, "GET REVIEW BY ID. ReviewId: \"$reviewId\".")
         return dao.getReviewById(reviewId)
     }
 
-    override suspend fun insertReview(beer: Beer, review: Review) {
-        Log.i(BEER_REPOSITORY_NAME, "INSERT REVIEW. Review: \"$review\" for the beer \"${beer.beerId}\".")
+    override suspend fun insertReview(review: Review) {
+        Log.i(BEER_REPOSITORY_NAME, "INSERT REVIEW. Review: \"$review\" for the beer \"${review.beerId}\".")
         withContext(Dispatchers.IO) {
-            dao.insertReview(beer, review)
+            dao.insertReview(review)
         }
     }
 
