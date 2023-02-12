@@ -1,104 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/title_text_view"
-        android:layout_height="wrap_content"
-        style="@style/default_text_review_style"
-        android:layout_marginTop="@dimen/add_edit_review_top_margin"
-        android:text="@string/add_a_review_text_title"
-        android:textSize="@dimen/add_edit_review_title_size"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="?attr/colorPrimaryVariant"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <import type="android.view.View" />
+        <import type="fr.iut.beerrater.presentation.utils.Converters" />
 
-    <EditText
-        android:id="@+id/edit_text_title_review"
+        <variable
+            name="addEditReviewViewModel"
+            type="fr.iut.beerrater.presentation.add_edit_review.AddEditReviewViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/default_text_review_style"
-        android:layout_marginStart="@dimen/add_edit_review_standard_margin"
-        android:layout_marginTop="@dimen/add_edit_review_title_margin"
-        android:layout_marginEnd="@dimen/add_edit_review_standard_margin"
-        android:ems="10"
-        android:backgroundTint="?attr/colorPrimaryVariant"
-        android:hint="@string/title_text"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        tools:text="A pleasure to share."
-        android:importantForAutofill="no"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <RatingBar
-        android:id="@+id/rating_bar_beer_review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="?attr/colorPrimaryVariant"
-        android:layout_marginTop="@dimen/add_edit_review_standard_margin"
-        android:theme="@style/default_rating_bar_style"
-        app:layout_constraintStart_toStartOf="@+id/edit_text_title_review"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_title_review"
-        android:contentDescription="@string/rating_bar_review_description"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/colorBackground"
+            tools:context=".presentation.add_edit_review.AddEditReviewActivity">
 
-    <EditText
-        android:id="@+id/edit_text_description_review"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/add_edit_review_standard_margin"
-        style="@style/default_text_review_style"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:maxLines="40"
-        android:gravity="top|start"
-        android:scrollHorizontally="false"
-        android:backgroundTint="?attr/colorPrimaryVariant"
-        android:scrollbars="vertical"
-        android:hint="@string/description_text"
-        app:layout_constraintEnd_toEndOf="@+id/edit_text_title_review"
-        app:layout_constraintStart_toStartOf="@+id/rating_bar_beer_review"
-        app:layout_constraintTop_toBottomOf="@+id/rating_bar_beer_review"
-        tools:text="What an incredible beer ! The first time I taste its savour, my mind explode in a confetti rain. It is a very colorful beer which has multiple interpretations. I strongly recommend!"
-        android:autofillHints="true" />
+            <EditText
+                android:id="@+id/edit_text_title_review"
+                style="@style/default_text_review_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/add_edit_review_standard_margin"
+                android:layout_marginTop="@dimen/add_edit_review_standard_margin"
+                android:layout_marginEnd="@dimen/add_edit_review_standard_margin"
+                android:backgroundTint="?attr/colorPrimaryVariant"
+                android:ems="10"
+                android:hint="@string/title_text"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="@={addEditReviewViewModel.review.title}"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="A pleasure to share." />
 
-    <Button
-        android:id="@+id/add_edit_review_cancel_button"
-        style="@style/default_text_view_style"
-        android:layout_marginStart="@dimen/add_edit_review_standard_margin"
-        android:layout_marginBottom="@dimen/add_edit_review_standard_margin"
-        android:backgroundTint="?attr/colorError"
-        android:textColor="?attr/colorOnError"
-        android:drawableTint="?attr/colorOnError"
-        android:contentDescription="@string/add_edit_review_cancel_button_description"
-        android:drawableEnd="@drawable/ic_cancel"
-        android:gravity="start|center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/cancel_text"
-        tools:targetApi="m" />
+            <RatingBar
+                android:id="@+id/rating_bar_beer_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorPrimaryVariant"
+                android:layout_marginTop="@dimen/add_edit_review_standard_margin"
+                android:theme="@style/default_rating_bar_style"
+                app:layout_constraintStart_toStartOf="@+id/edit_text_title_review"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_title_review"
+                android:contentDescription="@string/rating_bar_review_description"
+                android:rating="@={Converters.intToFloat(addEditReviewViewModel.review.rating)}"/>
 
-    <Button
-        android:id="@+id/add_edit_review_validate_button"
-        style="@style/default_text_view_style"
-        android:layout_marginEnd="@dimen/add_edit_review_standard_margin"
-        android:layout_marginBottom="@dimen/add_edit_review_standard_margin"
-        android:backgroundTint="?attr/colorPrimaryVariant"
-        android:textColor="?attr/colorOnPrimary"
-        android:drawableTint="?attr/colorOnPrimary"
-        android:contentDescription="@string/add_edit_review_save_button_description"
-        android:drawableEnd="@drawable/ic_check"
-        android:gravity="start|center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="@string/save_text"
-        tools:targetApi="m" />
-    
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:id="@+id/edit_text_description_review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/add_edit_review_standard_margin"
+                style="@style/default_text_review_style"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:maxLines="40"
+                android:textSize="18sp"
+                android:gravity="top|start"
+                android:scrollHorizontally="false"
+                android:backgroundTint="?attr/colorPrimaryVariant"
+                android:scrollbars="vertical"
+                android:hint="@string/description_text"
+                app:layout_constraintEnd_toEndOf="@+id/edit_text_title_review"
+                app:layout_constraintStart_toStartOf="@+id/rating_bar_beer_review"
+                app:layout_constraintTop_toBottomOf="@+id/rating_bar_beer_review"
+                tools:text="What an incredible beer ! The first time I taste its savour, my mind explode in a confetti rain. It is a very colorful beer which has multiple interpretations. I strongly recommend!"
+                android:autofillHints="true"
+                android:text="@={addEditReviewViewModel.review.comment}"/>
+
+            <Button
+                android:id="@+id/add_edit_review_cancel_button"
+                style="@style/default_text_view_style"
+                android:layout_marginStart="@dimen/add_edit_review_standard_margin"
+                android:layout_marginBottom="@dimen/add_edit_review_standard_margin"
+                android:backgroundTint="?attr/colorError"
+                android:contentDescription="@string/add_edit_review_cancel_button_description"
+                android:drawableEnd="@drawable/ic_cancel"
+                android:drawableTint="?attr/colorOnError"
+                android:gravity="start|center_vertical"
+                android:textColor="?attr/colorOnError"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:targetApi="m"
+                android:text="@string/cancel_text" />
+
+            <Button
+                android:id="@+id/add_edit_review_validate_button"
+                style="@style/default_text_view_style"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/add_edit_review_standard_margin"
+                android:layout_marginBottom="@dimen/add_edit_review_standard_margin"
+                android:backgroundTint="?attr/colorPrimaryVariant"
+                android:contentDescription="@string/add_edit_review_save_button_description"
+                android:drawableEnd="@drawable/ic_check"
+                android:drawableTint="?attr/colorOnPrimary"
+                android:gravity="start|center_vertical"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:targetApi="m"
+                android:text="@string/save_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.beers_list.BeerListActivity">
+    tools:context=".presentation.beer_list.BeerListActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_activity"
@@ -18,17 +19,9 @@
         app:logo="@drawable/ic_launcher_bg"
         app:title="@string/app_name"
         app:titleTextColor="?attr/colorOnPrimary"
-        app:titleMarginStart="@dimen/icon_title_space"
-        android:contentInsetLeft="0dp"
-        android:contentInsetStart="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        android:contentInsetRight="0dp"
-        android:contentInsetEnd="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetEnd="0dp"
-        app:contentInsetStartWithNavigation="0dp"
-        android:padding="0dp"/>
+        app:titleMargin="@dimen/icon_title_space"
+        android:layout_margin="0dp"
+        android:padding="0dp" />
 
     <include layout="@layout/toolbar_two_panes_activity_content" />
 

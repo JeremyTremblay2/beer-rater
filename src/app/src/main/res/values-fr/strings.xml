@@ -27,4 +27,8 @@
     <string name="add_edit_review_save_button_description">Sauvegarder les modifications</string>
     <string name="save_text">Enregistrer</string>
     <string name="cancel_text">Annuler</string>
+    <string name="gallons_unit">G</string>
+    <string name="liter_unit">L</string>
+    <string name="no_reviews_text">Pas encore d\'avis.</string>
+    <string name="unkown_comment_date_posted">Publié il y a longtemps.</string>
 </resources>

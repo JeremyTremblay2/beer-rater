@@ -1,68 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    card_view:cardCornerRadius="@dimen/cardview_corner_radius_comment"
-    card_view:cardElevation="@dimen/cardview_elevation"
-    android:layout_margin="@dimen/cardview_margin_comment"
-    card_view:cardBackgroundColor="?attr/colorSurface">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <import type="fr.iut.beerrater.presentation.utils.Converters" />
+
+        <variable
+            name="review"
+            type="fr.iut.beerrater.domain.model.Review" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/comment_cardview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/cardview_padding_comment">
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="@dimen/cardview_corner_radius_comment"
+        android:layout_margin="@dimen/cardview_margin_comment"
+        card_view:cardElevation="@dimen/cardview_elevation"
 
-        <TextView
-            android:id="@+id/review_item_text_view_title"
-            android:layout_width="0dp"
-            style="@style/default_text_review_style"
-            android:layout_marginEnd="@dimen/margin_delete_icon_review"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textSize="@dimen/comment_title_size"
-            android:textStyle="bold"
-            android:maxLines="2"
-            card_view:layout_constraintEnd_toStartOf="@+id/review_item_delete_button"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            tools:text="A pleasure to share." />
+        card_view:cardBackgroundColor="?attr/colorSurface">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/review_item_delete_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:tint="?attr/colorSurfaceInverse"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_delete"
-            android:layout_marginTop="-8dp"
-            android:layout_marginEnd="-8dp"
-            android:contentDescription="@string/button_delete_review_description"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_comment_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/cardview_padding_comment">
 
-        <TextView
-            android:id="@+id/review_item_text_view_comment"
-            style="@style/default_text_review_style"
-            android:layout_marginTop="8dp"
-            android:textSize="@dimen/comment_size"
-            android:maxLines="8"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="@+id/review_item_rating_bar"
-            card_view:layout_constraintTop_toBottomOf="@+id/review_item_rating_bar"
-            tools:text="What an incredible beer ! The first time I taste its savour, my mind explode in a confetti rain. It is a very colorful beer which has multiple interpretations. I strongly recommend!" />
+            <TextView
+                android:id="@+id/review_item_text_view_title"
+                android:layout_width="0dp"
+                style="@style/default_text_review_style"
+                android:layout_marginEnd="@dimen/margin_delete_icon_review"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="@dimen/comment_title_size"
+                android:textStyle="bold"
+                android:maxLines="2"
+                card_view:layout_constraintEnd_toStartOf="@+id/review_item_delete_button"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                tools:text="A pleasure to share."
+                android:text="@{review.title}"/>
 
-        <RatingBar
-            android:id="@+id/review_item_rating_bar"
-            android:theme="@style/default_rating_bar_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_marginTop="4dp"
-            card_view:layout_constraintStart_toStartOf="@+id/review_item_text_view_title"
-            card_view:layout_constraintTop_toBottomOf="@+id/review_item_text_view_title" />
+            <ImageButton
+                android:id="@+id/review_item_delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:contentDescription="@string/button_delete_review_description"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:src="@drawable/ic_delete"
+                android:layout_marginTop="-8dp"
+                android:layout_marginEnd="-8dp"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:tint="?attr/colorOnSurface" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/review_item_text_view_comment"
+                style="@style/default_text_review_style"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/comment_size"
+                android:maxLines="8"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="@+id/review_item_rating_bar"
+                card_view:layout_constraintTop_toBottomOf="@+id/review_item_rating_bar"
+                tools:text="What an incredible beer ! The first time I taste its savour, my mind explode in a confetti rain. It is a very colorful beer which has multiple interpretations. I strongly recommend!"
+                android:text="@{review.comment}"/>
+
+            <RatingBar
+                android:id="@+id/review_item_rating_bar"
+                android:theme="@style/default_rating_bar_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_marginTop="4dp"
+                card_view:layout_constraintStart_toStartOf="@+id/review_item_text_view_title"
+                card_view:layout_constraintTop_toBottomOf="@+id/review_item_text_view_title"
+                android:rating="@{review.rating}"/>
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/default_text_review_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_review_date"
+                android:textSize="12sp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/review_item_text_view_comment"
+                android:text="@{Converters.dateToLongString(context, review.reviewDate)}"
+                tools:text="10 February 2023 at 10:45:21"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -8,14 +8,14 @@
 
         <variable
             name="beerListViewModel"
-            type="fr.iut.beerrater.presentation.beers_list.BeerListViewModel" />
+            type="fr.iut.beerrater.presentation.beer_list.BeerListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:attr/colorBackground"
-        tools:context=".presentation.beers_list.BeerListActivity">
+        tools:context=".presentation.beer_list.BeerListActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

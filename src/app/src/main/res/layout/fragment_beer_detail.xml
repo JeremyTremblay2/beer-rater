@@ -277,45 +277,46 @@
                 android:id="@+id/no_reviews_text_view_beer_detail"
                 style="@style/default_text_view_style"
                 android:layout_marginTop="@dimen/beer_detail_side_margin"
-                android:layout_marginBottom="@dimen/beer_detail_side_margin"
                 android:text="@string/no_reviews_text"
                 android:textSize="20sp"
                 android:textStyle="italic"
+                android:visibility="@{Converters.booleanToVisibility(beerDetailViewModel.groupVisibility)}"
                 app:layout_constraintEnd_toEndOf="@+id/cardview_beer_description_detail"
                 app:layout_constraintStart_toStartOf="@+id/cardview_beer_description_detail"
-                app:layout_constraintTop_toBottomOf="@+id/reviews_section_name"
-                app:layout_constraintBottom_toTopOf="@+id/recycler_view_reviews"
-                android:visibility="@{Converters.booleanToVisibility(beerDetailViewModel.groupVisibility)}"/>
+                app:layout_constraintTop_toBottomOf="@+id/reviews_section_name" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_reviews"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/beer_detail_side_margin"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toTopOf="@+id/button_write_review"
                 app:layout_constraintEnd_toEndOf="@+id/cardview_beer_description_detail"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/reviews_section_name"
+                app:layout_constraintTop_toBottomOf="@+id/no_reviews_text_view_beer_detail"
                 app:spanCount="1"
                 tools:listitem="@layout/comment_item_card" />
 
             <Button
                 android:id="@+id/button_write_review"
                 style="@style/default_text_view_style"
+                android:layout_marginStart="@dimen/margin_button_add_review_beer_detail"
                 android:layout_marginTop="@dimen/margin_button_add_review_beer_detail"
                 android:layout_marginEnd="@dimen/margin_button_add_review_beer_detail"
-                android:layout_marginStart="@dimen/margin_button_add_review_beer_detail"
                 android:layout_marginBottom="@dimen/margin_bottom_button_add_review_beer_detail"
+                android:backgroundTint="?attr/colorPrimary"
                 android:contentDescription="@string/button_write_review_description"
                 android:drawableEnd="@drawable/ic_create"
-                android:gravity="start|center_vertical"
-                android:textColor="?attr/colorOnPrimary"
-                android:backgroundTint="?attr/colorPrimary"
                 android:drawableTint="?attr/colorOnPrimary"
+                android:gravity="start|center_vertical"
+                android:text="@string/add_review_text_button"
+                android:textColor="?attr/colorOnPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="@string/add_review_text_button"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_view_reviews"
+                app:layout_constraintVertical_bias="1.0"
                 tools:targetApi="m" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,4 +34,5 @@
     <dimen name="margin_beer_detail_volume">8dp</dimen>
     <dimen name="margin_button_add_review_beer_detail">16dp</dimen>
     <dimen name="margin_bottom_button_add_review_beer_detail">8dp</dimen>
+    <dimen name="margin_top_review_date">8dp</dimen>
 </resources>
