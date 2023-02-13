@@ -28,7 +28,9 @@
                 android:layout_marginStart="@dimen/beer_detail_side_margin"
                 android:layout_marginTop="@dimen/beer_detail_side_margin"
                 android:layout_marginEnd="@dimen/beer_detail_side_margin"
-                tools:text="Buzz"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                tools:text="Buzz fu utf tf utf utf uf uft utf tf utf utf uytf"
                 android:textSize="@dimen/beer_name_detail_size"
                 android:textStyle="bold"
                 android:maxLines="2"
@@ -52,7 +54,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/beer_name_detail"
-                app:srcCompat="@drawable/ic_beer" />
+                app:srcCompat="@drawable/ic_beer"
+                app:imageUrl="@{beerDetailViewModel.beer.beer.imageUrl}"/>
 
             <TextView
                 android:id="@+id/beer_tagline_detail"

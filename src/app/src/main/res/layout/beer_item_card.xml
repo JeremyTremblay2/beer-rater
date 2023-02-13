@@ -35,7 +35,8 @@
                 android:layout_height="match_parent"
                 android:maxHeight="300dp"
                 android:src="@drawable/ic_beer"
-                android:contentDescription="@string/beer_image_description" />
+                android:contentDescription="@string/beer_image_description"
+                card_view:imageUrl="@{beer.imageUrl}"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_weight="2"

@@ -52,7 +52,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/cardview_beer_description_detail"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent=".15"
-                app:srcCompat="@drawable/ic_beer" />
+                app:srcCompat="@drawable/ic_beer"
+                app:imageUrl="@{beerDetailViewModel.beer.beer.imageUrl}" />
 
             <TextView
                 android:id="@+id/beer_tagline_detail"
